@@ -29,12 +29,28 @@ a:active{
 }
 
 a:visited{
-    color:black;
+    color:blueviolet;
 }
 
 .container{
     width:80%;
     margin:auto;
+}
+
+.button{
+    background-color:#333;
+    padding: 8px;
+    border: none;
+    color: white;
+}
+
+.button:hover{
+    background: red;
+    color: white;
+}
+
+.clr{
+    clear:both;
 }
 
 .box-1{
@@ -93,7 +109,8 @@ a:visited{
 .categories li{
     padding-bottom: 6px;
     border-bottom:dotted 1px #333;
-    list-style-image: url('../images/check.jfif');
+    list-style-image: url('images/check.jfif');
+    
 }
 
 .my-form{
@@ -113,10 +130,6 @@ a:visited{
     width: 100%;
 }
 
-.my-form input[type="submit"]{
-    padding: 8px;
-    width: 100%;
-}
 
 .block{
     float:left;
@@ -124,4 +137,65 @@ a:visited{
     border:1px solid #ccc;
     padding: 10px;
     box-sizing:border-box;
+}
+
+#main-block{
+    float:left;
+    width:70%;
+    padding:15px;
+    box-sizing:border-box;
+}
+
+#sidebar{
+    float:right;
+    width:30%;
+    background-color:#333;
+    color:#fff;
+    padding:15px;
+    box-sizing: border-box;
+}
+
+.p-box{
+    width:800px;
+    height: 500px;
+    border:1px solid #000;
+    margin-top:30px;
+    position:relative;
+    background-image:url(images/mistylake.png);
+    background-repeat: no-repeat;
+    background-position: 100px 200px;
+    background-position: center center;
+}
+
+.p-box h1{
+    position:absolute;
+    top:100px;
+    left:200px;
+}
+
+.p-box h2{
+    position:absolute;
+    bottom:40px;
+    right:100px;
+}
+
+.fix-me{
+    position:fixed;
+    top:400px;
+}
+
+.lost-list li:first-child{
+    background:red;
+}
+
+.lost-list li:last-child{
+    background:green;
+}
+
+.lost-list li:nth-child(5){
+    background:purple;
+}
+
+.lost-list li:nth-child(even){
+    background:grey;
 }
