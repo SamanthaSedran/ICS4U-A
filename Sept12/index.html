@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+        #container{ /*Container holds the items, items themselves are orange, container is blue*/
+            display: flex;
+            justify-content: flex-end;
+            height:50px;
+            align-items: center;
+        }
+
+        .item{
+            background-color: #3c524a; 
+            height: 60px;
+            width:10%;
+            font-family: Arial, Helvetica, sans-serif;
+            color:white;
+            padding: 0 10px 0 10px;
+            
+        }
+
+        .logo{
+            /*justify-content: start;*/
+            width:30%
+
+        }
+
+        .bvg{
+            max-height: 100px;
+            max-width: 100px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="container">
+        <div class="item logo">
+            <img src="bvg.svg" class="bvg">
+        </div>
+        <div class="item">COVID-19</div>
+        <div class="item">Parent and Student Resources</div>
+        <div class="item">Alumni</div>
+        <div class="item">News and Publications</div>
+        <div class="item">60th Celebration</div>
+        <div class="item">Donate Online</div>
+    </div>
+    
+</body>
+</html>
