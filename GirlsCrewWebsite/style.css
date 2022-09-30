@@ -1,0 +1,173 @@
+*{
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 0.3;
+    color: #333;
+
+}
+
+.container{
+    max-width: auto;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /**fr stands for fraction of the page */
+    grid-template-rows: repeat(4, 40px);
+}
+
+/**Header */
+
+.item{
+    background-color: white;
+    color: black;
+    font-size: 17px;
+    padding: 20px;
+    text-align: center;
+    display: inline;
+    float: left;
+}
+
+.gcc{
+    max-height: 152px;
+    max-width: 152px;
+}
+
+
+/**Nav Bar */
+
+.item:nth-of-type(1){ 
+    grid-column: 1/4;
+    grid-row: 1/4;
+    /*background-color: greenyellow;*/
+}
+
+.item:nth-of-type(2){ 
+    grid-column: 1/4;
+}
+
+.navbar a{
+    color: black;
+    text-decoration: none;
+    font-size: 17;
+    font-weight: bold;
+}
+
+.nav{
+    display: flex;
+}
+
+nav .current a{
+    color: grey;
+    font-weight: bold;
+}
+
+nav a:hover{
+    color: #79C4DC;
+}
+
+.listitem{
+    flex: 1; 
+    /*background: magenta;*/
+    color:#fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/**Showcase */
+.item:nth-of-type(3){
+    grid-column: 1/4;
+    background-color: yellow;
+}
+
+
+/*Showcase */
+#showcase{
+    min-height: 700px;
+    color:#fff;
+    text-align: center; 
+}
+
+#showcase img{
+    height:250px;
+    margin:200px 0;
+}
+
+#showcase .bg-image{
+    position: absolute;
+    background:url('images/titleimage.png') no-repeat center;
+    background-size:cover;
+    width:100%;
+    height:700px;
+    opacity: 0.4;
+    z-index: -1;
+}
+
+
+#showcase p{
+    font-size: 20px;
+}
+
+/**Summary */
+
+#summary{
+    height:300px;
+    text-align: center;
+}
+
+#summary h2{
+    text-align: center;
+    margin:120px 0;
+}
+
+#summary p{
+    text-align: center;
+    line-height: 25px;
+    margin:20px 100px;
+}
+
+/*Services*/
+
+.containerboxes{
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    background: lightgrey;
+    justify-content: center;
+}
+
+.box{
+    flex-grow: 25%; 
+    height: auto;
+    background: white;
+    color:#fff;
+    margin: 20px 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.box img{
+    max-width: 400px;
+    padding: 0px 0px;
+}
+
+/**Footer */
+footer{
+    padding: 20px;
+    margin: 0;
+    color:#ffffff;
+    background-color:#79C4DC;
+    text-align: center;
+    font-weight: bold;
+
+}
+
