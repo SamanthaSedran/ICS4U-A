@@ -1,3 +1,4 @@
+/**Global Styles */
 *{
     box-sizing: border-box;
     padding:0;
@@ -12,15 +13,138 @@ body{
 
 }
 
-.container{
-    max-width: auto;
+.general{
+    width:90%;
     margin: auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /**fr stands for fraction of the page */
-    grid-template-rows: repeat(4, 40px);
+    overflow: hidden;
+}
+
+h1{
+    margin:20px 20px 20px 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 25px;
+}
+
+h2{
+    text-align: center;
+    padding: 30px;
+    padding-bottom: 0;
+    font-size: 30px;
+    color: black;
+}
+
+h3{
+    margin:20px 20px 10px 20px;
+    line-height: 20px;
+    text-align: center;
+
+}
+
+h4{
+    line-height: 10px;
+    margin: 10px 20px 0 20px;
+}
+
+h5{
+    line-height: 15px;
+    font-size: 15px;
+    margin:5px 20px;
+}
+
+p{
+    line-height: 20px;
+    margin: 0 20px 10px;
+}
+
+a{
+    color:black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+.background{
+    padding: 15px;
+    background-color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+
+}
+
+.bluebackground{
+    padding: 5px;
+    background-color: #79C4DC;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+img{
+    border-radius: 5px;
+}
+
+/**Flex Boxes Used to Shows the Services at Home and The Women in STEM Hall of Famee Inductees */
+.containerboxes{
+    display: flex;
+    align-items: center;
+    margin: 0;
+    background: lightgrey;
+    justify-content: center;
+}
+
+.box{
+    max-width: 320px;
+    width:auto;
+    height: auto;
+    background: white;
+    color: black;
+    margin: 20px 10px;
+    padding: 0px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.box h3{
+    margin: 20px 0 15px 0;
+}
+
+.box p{
+    line-height: 20px;
+}
+
+.box img{
+    max-width: 320px;
+    width: 100%;
+    padding: 0px 0px;
+}
+
+/**Main */
+.main{
+    background-color: #f4f4f4;
+}
+
+article.main-column{
+    float:left;
+    width: 60%;
+    margin:auto;
+
 }
 
 /**Header */
+
+.container{
+    max-width: auto;
+    max-height: auto;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(4, 40px);
+}
 
 .item{
     background-color: white;
@@ -43,18 +167,16 @@ body{
 .item:nth-of-type(1){ 
     grid-column: 1/4;
     grid-row: 1/4;
-    /*background-color: greenyellow;*/
 }
 
 .item:nth-of-type(2){ 
     grid-column: 1/4;
+    max-height: 300px;
 }
 
 .navbar a{
-    color: black;
-    text-decoration: none;
     font-size: 17;
-    font-weight: bold;
+    line-height: 15px;
 }
 
 .nav{
@@ -72,21 +194,14 @@ nav a:hover{
 
 .listitem{
     flex: 1; 
-    /*background: magenta;*/
     color:#fff;
     display: flex;
     justify-content: center;
     align-items: center;
+    height:auto;
 }
 
-
-/**Showcase */
-.item:nth-of-type(3){
-    grid-column: 1/4;
-    background-color: yellow;
-}
-
-
+/**Home */
 /*Showcase */
 #showcase{
     min-height: 700px;
@@ -95,8 +210,11 @@ nav a:hover{
 }
 
 #showcase img{
-    height:250px;
+    max-height:250px;
+    max-width: 640.953px;
+    width:85%;
     margin:200px 0;
+    
 }
 
 #showcase .bg-image{
@@ -114,50 +232,146 @@ nav a:hover{
     font-size: 20px;
 }
 
-/**Summary */
+
+/**Summary in Home*/
 
 #summary{
-    height:300px;
+    height:auto;
     text-align: center;
+    margin: 30px 0;
 }
 
-#summary h2{
-    text-align: center;
-    margin:120px 0;
-}
 
 #summary p{
     text-align: center;
     line-height: 25px;
-    margin:20px 100px;
+    margin:20px 60px;
 }
 
-/*Services*/
 
-.containerboxes{
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
-    background: lightgrey;
-    justify-content: center;
+/**What We Do */
+/*Main*/
+
+aside#sidebar{
+    float:right;
+    width:35%;
+    margin: auto;
+    text-align: center;
 }
 
-.box{
-    flex-grow: 25%; 
-    height: auto;
-    background: white;
-    color:#fff;
-    margin: 20px 10px;
+
+
+/**Women in STEM Website */
+#website{
     padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
+    color: white;
+    background: #79C4DC;
 }
 
-.box img{
-    max-width: 400px;
-    padding: 0px 0px;
+/**Photo Gallery */
+.photogallery{
+    max-width: auto;
+    max-height: auto;
+    margin: auto;
+    padding-top: 20px;
+    display: grid;
+    background-color: #f4f4f4;
+    grid-template-columns: 0.6fr auto 0.1fr auto 0.1fr auto 0.6fr; 
+    grid-template-rows: auto 20px auto 30px;
+}
+
+.photogallery img{
+    max-width:400px;
+    width: 100%;
+    padding:10px;
+}
+
+.photo:nth-of-type(1){ 
+    grid-column: 2/3;
+}
+
+.photo:nth-of-type(2){ 
+    grid-column: 4/5;
+}
+
+.photo:nth-of-type(3){ 
+    grid-column: 6/7;
+}
+
+.photo:nth-of-type(4){ 
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+
+.photo:nth-of-type(5){ 
+    grid-column: 4/5;
+    grid-row: 3/4;
+}
+
+.photo:nth-of-type(6){ 
+    grid-column: 6/7;
+    grid-row: 3/4;
+}
+
+/**Form */
+.button{
+    height:38px;
+    background:white;
+    border:0;
+    padding-left:20px;
+    padding-right:20px;
+    color:#333;
+    margin: 7px 5px 10px 5px; 
+
+}
+
+.button:hover{
+    background-color: lightgray;
+}
+
+#buttoncenter{
+    text-align: center;
+}
+
+.bluebackground p{
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+input{
+    margin: 5px 20px;
+    height: 25px;
+    width: 80%;
+}
+
+textarea{
+    margin: 5px 20px;
+    width: 80%;
+}
+
+
+
+/**Contact Us */
+.main-column a{
+    margin: 20px;
+}
+
+.main-column .background{
+    padding-bottom: 25px;
+}
+
+.contactus p{
+    padding-bottom: 20px;
+}
+
+.socials{
+    text-align: center;
+}
+
+.socials img{
+    margin-top: 5px;
+    max-height: 20px;
+    padding-top: 5px;
 }
 
 /**Footer */
@@ -170,4 +384,110 @@ footer{
     font-weight: bold;
 
 }
+
+
+/**Media Queries */
+@media(max-width:500px){
+    .photogallery{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-top: 0;
+    }
+
+    .photo{
+        padding: 10px;
+    }
+}
+
+@media(max-width:700px){
+    .boxes .containerboxes{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav{
+        flex-direction: column;
+    }
+    
+    .nav li{
+        padding: 10px;
+    }
+
+    .container{
+        height: 330px;
+    }
+
+    
+
+    #summary p{
+        margin:20px 20px;
+    }
+
+
+}
+
+@media(max-width:800px){
+    article.main-column, aside#sidebar{
+        float: none;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media(max-width:910px){
+    .photogallery{
+        grid-template-columns: 0.6fr auto 0.1fr auto 0.6fr; 
+        grid-template-rows: auto 20px auto 20px auto 30px;
+    }
+    
+    .photogallery img{
+        max-width:300px;
+    }
+    
+    .photo:nth-of-type(1){ 
+        grid-column: 2/3;
+    }
+    
+    .photo:nth-of-type(2){ 
+        grid-column: 4/5;
+    }
+    
+    .photo:nth-of-type(3){ 
+        grid-column: 2/3;
+        grid-row: 3/4;
+    }
+    
+    .photo:nth-of-type(4){ 
+        grid-column: 4/5;
+        grid-row: 3/4;
+    }
+    
+    .photo:nth-of-type(5){ 
+        grid-column: 2/3;
+        grid-row: 5/6;
+    }
+    
+    .photo:nth-of-type(6){ 
+        grid-column: 4/5;
+        grid-row: 5/6;
+    }
+}
+
+@media(max-width:1250px){
+    .container{
+        grid-template-rows: repeat(6, 30px);
+    }
+
+    .item:nth-of-type(1){ 
+        grid-row: 1/5;
+    }
+
+    .item:nth-of-type(2){ 
+        grid-row: 5/6
+    }
+}
+
 
