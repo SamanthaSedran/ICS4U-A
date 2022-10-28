@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <p>Enter a new item: <input type="text" name="" id="desc"><button id="add">Add Item</button></p>
+    </section>
+    <section class="list">
+        <ul><h1>Shopping List</h1></ul>
+    </section>
+    
+</body>
+
+<script>
+    const add = document.querySelector('button#add');
+    let item = document.querySelector('input#desc');
+    let totlist = document.querySelector('ul');
+    
+    add.onclick = () => {
+        const curritem = item.value;
+        item.value = '';
+
+        let list = document.createElement('li');
+        let newSpan = document.createElement('span');
+        const del = document.createElement('button');
+
+        list.appendChild(newSpan);
+        list.appendChild(del);
+
+        newSpan.textContent = curritem;
+        del.textContent = "delete";
+
+        totlist.appendChild(list);
+        const remove = section.childNodes;
+        //del.onclick = remove(selectedChild);
+    };
+
+    /*let remove = (selectedChild) =>{
+        list.removeChild(selectedChild);
+    }*/
+
+
+
+</script>
+
+<!--
+    add.onclick = () =>{
+    const item = document.querySelector('input#desc');
+    const newLi = document.createElement('li');
+    newLi.textContent = item;
+    const section = document.querySelector('section.list');
+    section.appendChild(newLi);
+    }
+-->
+</html>
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .highlight{
+            background-color: red;
+            width: 500px;
+            padding: 5px;
+            color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <section> <!--children of section are paragraphs, paragraphs r siblings to each toher, body is the parent for section-->
+    <p id="one">Hello World</p>
+    <p id="two">Hello World</p>
+</section>
+    <section>
+
+    </section>
+
+
+</body>
+<script> //script after bdy so body loads first
+    const paragraphs = document.querySelectorAll('p#one'); //this selects all the paragraphs
+    console.log(paragraphs); //this will return a list or array of paragraphs
+    const oneParagraph = document.querySelector('p:last-of-type'); //this selects the first paragraph
+
+    console.log(oneParagraph);//single node
+
+    const newParagraph = document.createElement('p');
+    newParagraph.textContent = 'Here is some text.';
+    const section = document.querySelector('section');
+    section.appendChild(newParagraph);
+    //section.appendChild("More Stuff"); //you can't add a string to append child
+    const children = section.childNodes; //will give you all of the child nodes from the section
+
+    //newParagraph.setAttribute('class', 'highlight');
+    //newParagraph.classList.add('highlight');
+
+    newParagraph.onmouseover = () => {
+        newParagraph.classList.add('highlight');
+    };
+
+    newParagraph.onmouseleave = () => {
+        newParagraph.classList.remove('highlight');
+    };
+
+
+</script>
+</html>
