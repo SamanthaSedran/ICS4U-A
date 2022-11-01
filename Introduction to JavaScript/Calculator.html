@@ -89,6 +89,9 @@
 }
 
    const addNumber = (num) =>{
+      if(resultBar.textContent=='NaN'){
+         clear();
+      }
       resultBar.textContent += num;
    }
 
@@ -98,12 +101,26 @@
 
    const sum = () =>{
       let equation = resultBar.textContent;
+      let operator = operatorIndex(equation);
       clear()
-      if(operatorIndex(equation)==-1){
+      if(operator==-1){
          addNumber(equation);
-      }else{
-         let answer = parseInt(equation); //WHAT?!? help
-         addNumber(answer);
+      }else if(((equation.substring(operator))==(equation.substring(equation.length-1))) || ((equation.substring(operator, operator+1))==(equation.substring(0,1)))){
+         resultBar.textContent = 'NaN';
+      }else {
+         let num1 = Number(equation.substring(0,operator));
+         let num2 = Number(equation.substring(operator+1));
+         let answer = 0; 
+         if(equation.substring(operator, operator+1)=='+'){
+            answer = num1+num2;
+         }else if(equation.substring(operator, operator+1)=='-'){
+            answer = num1-num2;
+         }else if(equation.substring(operator, operator+1)=='/'){
+            answer = num1/num2;
+         }else if(equation.substring(operator, operator+1)=='*'){
+            answer = num1*num2;
+         }
+         resultBar.textContent = answer;
       }
       return
    }
