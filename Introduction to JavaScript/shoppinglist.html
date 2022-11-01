@@ -36,13 +36,13 @@
         del.textContent = "delete";
 
         totlist.appendChild(list);
-        const remove = section.childNodes;
-        //del.onclick = remove(selectedChild);
+        const selectedChild = section.childNodes;
+        del.onclick = remove(selectedChild);
     };
 
-    /*let remove = (selectedChild) =>{
+    let remove = (selectedChild) =>{
         list.removeChild(selectedChild);
-    }*/
+    }
 
 
 

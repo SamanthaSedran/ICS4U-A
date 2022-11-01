@@ -43,6 +43,7 @@
    </div>
 </body>
 <script>
+   const calculatorBase = document.querySelector('.grid-container');
    const keypadNumbers = [
       [7, 8, 9, '/'],
       [4, 5, 6, '*'],
@@ -50,6 +51,62 @@
       [0, '.', '-'],
       ['CLS', '=']
    ];
+
+
+//Creating Calculator
+   keypadNumbers.forEach((rowNum)=>{
+      rowNum.forEach((num) => {
+         const buttonElement = document.createElement('button');
+         buttonElement.textContent = num;
+         buttonElement.classList.add('key');
+         if(num===0){
+            buttonElement.classList.add('wide-button-1');
+         }else if(num==="CLS"){
+            buttonElement.classList.add('wide-button-1');
+         }else if(num==="="){
+            buttonElement.classList.add('wide-button-2');
+         }
+         buttonElement.addEventListener('click', () => handleClick(num))
+         calculatorBase.append(buttonElement);
+      });
+   });
+
+   const resultBar = document.createElement('div');
+   resultBar.textContent = '';
+   resultBar.classList.add('key');
+   resultBar.classList.add('result');
+   calculatorBase.append(resultBar);
+
+   const handleClick = (key) => {
+    console.log('clicked', key)
+    if(key === '='){
+      sum();
+    }else if(key == 'CLS'){
+      clear();
+    }else{
+    addNumber(key);
+    }
+}
+
+   const addNumber = (num) =>{
+      resultBar.textContent += num;
+   }
+
+   const clear = () =>{
+      resultBar.textContent = '';
+   }
+
+   const sum = () =>{
+      let equation = resultBar.textContent;
+      clear()
+      if(operatorIndex(equation)==-1){
+         addNumber(equation);
+      }else{
+         let answer = parseInt(equation); //WHAT?!? help
+         addNumber(answer);
+      }
+      return
+   }
 
 
    function operatorIndex(exp) {
