@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Matches</title>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://bulma.io">
+            <img src="Images/first-horz-rgb.png" width="112" height="28">
+          </a>
+      
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a href="Matchs.htmls" class="navbar-item current">
+              Matches
+            </a>
+      
+            <a class="navbar-item" href="Standings.html">
+              Standings
+            </a>
+      
+            <a href="Admin.html" class="navbar-item">
+                Admin
+              </a>
+            </div>
+          </div>
+      
+        </div>
+      </nav>
+    <table id="standings" class="table is-striped">
+        <!--<p>Team Name: <input type="text" name="" id="NewName"> Number of Wins: <input type="text" name="" id="NewW"> Number of Losses: <input type="text" name="" id="NewL"> Number of Points: <input type="text" name="" id="NewPTS"><button id="add">Add Item</button></p>-->
+        <thead> <!--Header section of the table-->
+            <tr>
+                <th onclick="sort('Qual');">Qualification Number</th>
+                <th>Red Alliance 1</th>
+                <th>Red Alliance 2</th>
+                <th>Red Alliance 3</th>
+                <th>Blue Alliance 1</th>
+                <th>Blue Alliance 2</th>
+                <th>Blue Alliance 3</th>
+                <th onclick="sort('PTSRed');">Points Red</th>
+                <th onclick="sort('PTSBlue');">Points Blue</th>
+            </tr>
+        </thead>
+        <tbody> <!--Rest of the table-->
+
+        </tbody>
+    </table>
+</body>
+
+<script>
+    function getGames() {
+      return JSON.parse(localStorage['games']);
+      
+    }
+
+    createTable(getGames());
+
+    function createTable(games){
+        let tableBody = document.querySelector('#standings tbody');
+
+        tableBody.replaceChildren();
+
+        games.forEach((game) => {
+            const row = document.createElement('tr');
+            let cell = document.createElement('td');
+            let link = document.createElement('a');
+            link.href = 'individgame.html?Qual=' + game.Qual;
+            link.textContent = game.Qual;
+            cell.textContent = '';
+            cell.appendChild(link);
+            row.appendChild(cell);
+
+            cell = document.createElement('td');
+            cell.textContent = game.RedAll[0].stat1;
+            link = document.createElement('a');
+            link.href = 'individteam.html?Team=' + game.RedAll[0].stat1;
+            link.textContent = game.RedAll[0].stat1;
+            cell.textContent = '';
+            cell.appendChild(link);
+            row.appendChild(cell);
+
+            cell = document.createElement('td');
+            cell.textContent = game.RedAll[0].stat2;
+            link = document.createElement('a');
+            link.href = 'individteam.html?Team=' + game.RedAll[0].stat2;
+            link.textContent = game.RedAll[0].stat2;
+            cell.textContent = '';
+            cell.appendChild(link);
+            row.appendChild(cell);
+
+            cell = document.createElement('td');
+            cell.textContent = game.RedAll[0].stat3;
+            link = document.createElement('a');
+            link.href = 'individteam.html?Team=' + game.RedAll[0].stat3;
+            link.textContent = game.RedAll[0].stat3;
+            cell.textContent = '';
+            cell.appendChild(link);
+            row.appendChild(cell);
+
+            cell = document.createElement('td');
+            cell.textContent = game.BlueAll[0].stat1;
+            link = document.createElement('a');
+            link.href = 'individteam.html?Team=' + game.BlueAll[0].stat1;
+            link.textContent = game.BlueAll[0].stat1;
+            cell.textContent = '';
+            cell.appendChild(link);
+            row.appendChild(cell);
+
+            cell = document.createElement('td');
+            cell.textContent = game.BlueAll[0].stat2;
+            link = document.createElement('a');
+            link.href = 'individteam.html?Team=' + game.BlueAll[0].stat2;
+            link.textContent = game.BlueAll[0].stat2;
+            cell.textContent = '';
+            cell.appendChild(link);
+            row.appendChild(cell);
+
+            cell = document.createElement('td');
+            cell.textContent = game.BlueAll[0].stat3;
+            link = document.createElement('a');
+            link.href = 'individteam.html?Team=' + game.BlueAll[0].stat3;
+            link.textContent = game.BlueAll[0].stat3;
+            cell.textContent = '';
+            cell.appendChild(link);
+            row.appendChild(cell);
+
+            cell = document.createElement('td');
+            cell.textContent = game.RedAll[0].totscore;
+            row.appendChild(cell);
+
+            cell = document.createElement('td');
+            cell.textContent = game.BlueAll[0].totscore;
+            row.appendChild(cell);
+
+            tableBody.appendChild(row);
+            
+        });
+
+        
+    }
+
+    function sort(field){
+        let games = getGames();
+        if(field == 'Qual'){
+            games = games.sort((gameA, gameB) => gameA.Qual - gameB.Qual);
+        }else if(field === 'PTSRed'){
+            games = games.sort((gameA, gameB) => gameB.RedAll[0].totscore - gameA.RedAll[0].totscore);
+        }else if(field === 'PTSBlue'){
+            games = games.sort((gameA, gameB) => gameB.BlueAll[0].totscore - gameA.BlueAll[0].totscore);
+        }
+
+        createTable(games);
+    }
+</script>
+
+</html>

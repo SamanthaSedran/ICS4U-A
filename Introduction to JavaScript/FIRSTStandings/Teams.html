@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <title>Teams</title>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://bulma.io">
+            <img src="Images/first-horz-rgb.png" width="112" height="28">
+          </a>
+      
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item current">
+              Teams
+            </a>
+      
+            <a class="navbar-item">
+              Standings
+            </a>
+      
+            <div class="navbar-item">
+                Admin
+              </a>
+            </div>
+          </div>
+      
+        </div>
+      </nav>
+    <table id="standings" class="table is-striped">
+        <!--<p>Team Name: <input type="text" name="" id="NewName"> Number of Wins: <input type="text" name="" id="NewW"> Number of Losses: <input type="text" name="" id="NewL"> Number of Points: <input type="text" name="" id="NewPTS"><button id="add">Add Item</button></p>-->
+        <thead> <!--Header section of the table-->
+            <tr>
+                <th onclick="sort('Name');">Name</th>
+                <th onclick="sort('W');">Wins</th>
+                <th onclick="sort('L');">Losses</th>
+                <th onclick="sort('PTS');">Points</th>
+            </tr>
+        </thead>
+        <tbody> <!--Rest of the table-->
+
+        </tbody>
+    </table>
+</body>
+
+<script>
+    function getTeams() {
+      return JSON.parse(localStorage['teams']);
+      
+    }
+
+    createTable(getTeams());
+
+    function createTable(teams){
+        let tableBody = document.querySelector('#standings tbody');
+
+        tableBody.replaceChildren();
+
+        teams.forEach((team) => {
+            const row = document.createElement('tr');
+            let cell = document.createElement('td');
+            let link = document.createElement('a');
+            link.href = 'individteam.html?Number=' + team.Number;
+            link.textContent = team.Name;
+            cell.textContent = '';
+            cell.appendChild(link);
+            row.appendChild(cell);
+
+            cell = document.createElement('td');
+            cell.textContent = team.W;
+            row.appendChild(cell);
+
+            cell = document.createElement('td');
+            cell.textContent = team.L;
+            row.appendChild(cell);
+
+            cell = document.createElement('td');
+            cell.textContent = team.PTS;
+            row.appendChild(cell);
+
+            tableBody.appendChild(row);
+            
+        });
+
+        
+    }
+
+    function sort(field){
+        let teams = getTeams();
+        if(field === 'Name'){
+            teams = teams.sort((teamA, teamB) => {
+                return(teamA.Name < teamB.Name)? -1: 1
+            });
+        }else if(field === 'W'){
+            teams = teams.sort((teamA, teamB) => teamB.W - teamA.W);
+        }else if(field === 'L'){
+            teams = teams.sort((teamA, teamB) => teamA.L - teamB.L);
+        }else if(field === 'PTS'){
+            teams = teams.sort((teamA, teamB) => teamB.PTS - teamA.PTS);
+        }
+
+        createTable(teams);
+    }
+</script>
+
+</html>

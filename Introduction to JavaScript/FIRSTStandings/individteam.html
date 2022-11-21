@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <title>Inidividual Qualification Match</title> <!--Find out how to get individ team name in document title-->
+</head>
+<body onload="start();">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://bulma.io">
+            <img src="Images/first-horz-rgb.png" width="112" height="28">
+          </a>
+      
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item current">
+              Teams
+            </a>
+      
+            <a class="navbar-item">
+              Standings
+            </a>
+      
+            <a class="navbar-item" href="data.html">
+                Admin
+              </a>
+            </div>
+          </div>
+      
+        </div>
+      </nav>
+      <div id="test"></div>
+    <table id="standings" class="table is-striped">
+        <!--<p>Team Name: <input type="text" name="" id="NewName"> Number of Wins: <input type="text" name="" id="NewW"> Number of Losses: <input type="text" name="" id="NewL"> Number of Points: <input type="text" name="" id="NewPTS"><button id="add">Add Item</button></p>-->
+        <thead> <!--Header section of the table-->
+            <tr>
+              <th onclick="sort('Qual');">Qualification Number</th>
+              <th>Red Alliance 1</th>
+              <th>Red Alliance 2</th>
+              <th>Red Alliance 3</th>
+              <th>Blue Alliance 1</th>
+              <th>Blue Alliance 2</th>
+              <th>Blue Alliance 3</th>
+              <th onclick="sort('PTSRed');">Points Red</th>
+              <th onclick="sort('PTSBlue');">Points Blue</th>
+            </tr>
+        </thead>
+        <tbody> <!--Rest of the table-->
+
+        </tbody>
+    </table>
+    
+</body>
+<script>
+    function start(){
+      const dataString = localStorage.getItem('teams');
+      const teams = JSON.parse(dataString);
+      let params = (new URL(document.location)).searchParams;
+
+      const team = teams.filter(team => team.Number == params.get('Number'));
+
+      document.querySelector('#test').textContent = team[0].Name;
+      console.log("worked!");
+      createGames(team[0].games);
+    }
+
+    function createGames(games){
+        let tableBody = document.querySelector('#standings tbody');
+
+        tableBody.replaceChildren();
+
+        games.forEach((game) => {
+            const row = document.createElement('tr');
+            let cell = document.createElement('td');
+            cell.textContent = game.qualnum;
+            row.appendChild(cell);
+
+            cell = document.createElement('td');
+            //checkAll(game.qualnum, game.teamall);
+            cell.textContent = game.teamall;
+            row.appendChild(cell);
+
+            /*cell = document.createElement('td');
+            cell.textContent = team.L;
+            row.appendChild(cell);
+
+            cell = document.createElement('td');
+            cell.textContent = team.PTS;
+            row.appendChild(cell);*/
+
+            tableBody.appendChild(row);
+            
+        });
+
+        
+    }
+
+    /*function checkAll(qual, teamall){
+      const dataString = localStorage.getItem('teams');
+      const teams = JSON.parse(dataString);
+      let teamstring = '';
+      teams.forEach((team)=>{
+        team.games.forEach(
+          (game)=>{
+            
+          }
+        );
+      }
+
+      );
+
+
+
+      teams.forEach(team){
+        team.games.forEach(game){
+          if(game.qualnum==qual && game.teamall=='red1'){
+            teamstring += 
+          }
+        }
+      }
+
+    }*/
+</script>
+</html>

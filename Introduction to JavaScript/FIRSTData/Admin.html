@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Admin</title>
+
+</head>
+
+<body onload="getGames();">
+   <p><a href="Matchs.html">Home Page</a></p>
+</body>
+<script>
+   let gameData;
+
+   function getGames() {
+      gameData = JSON.parse(localStorage['games']);
+   }
+
+   let games = [];
+   let game = {};
+   game['Qual'] = 1;
+   game['Winner'] = 'R';
+   game['RedAll'] = [{
+    'stat1':865,
+    'stat2':3161,
+    'stat3':4015,
+    'auto':6,
+    'teleop':17,
+    'fouls':4,
+    'totscore':6+17+4,
+    'rp':2
+   }];
+   game['BlueAll'] = [{
+    'stat1':7520,
+    'stat2':914,
+    'stat3':8764,
+    'auto':2,
+    'teleop':0,
+    'fouls':0,
+    'totscore': 2,
+    'rp':0
+   }];
+   games.push(game);
+
+   //HELLLLLOOOOOOOOOOOOOOOOOOOOOOOOO :) - From Nathan
+
+   game = {};
+   game['Qual'] = 2;
+   game['Winner'] = 'B';
+   game['RedAll'] = [{
+    'stat1':771,
+    'stat2':2198,
+    'stat3':2386,
+    'auto':6,
+    'teleop':7,
+    'fouls':4,
+    'totscore': 6+7+4,
+    'rp':0
+   }];
+   game['BlueAll'] = [{
+    'stat1':6397,
+    'stat2':2200,
+    'stat3':1360,
+    'auto':8,
+    'teleop':28,
+    'fouls':0,
+    'totscore': 8+28,
+    'rp':2
+   }];
+   games.push(game);
+
+   game = {};
+   game['Qual'] = 3;
+   game['Winner'] = 'B';
+   game['RedAll'] = [{
+    'stat1':1334,
+    'stat2':5032,
+    'stat3':1360,
+    'auto':2,
+    'teleop':0,
+    'fouls':8,
+    'totscore': 2+8,
+    'rp':0
+   }];
+   game['BlueAll'] = [{
+    'stat1':7520,
+    'stat2':610,
+    'stat3':3161,
+    'auto':6,
+    'teleop':13,
+    'fouls':12,
+    'totscore': 6+12+13,
+    'rp':2
+   }];
+   games.push(game);
+   
+   localStorage.setItem('games', JSON.stringify(games));
+   
+</script>
+
+</html>

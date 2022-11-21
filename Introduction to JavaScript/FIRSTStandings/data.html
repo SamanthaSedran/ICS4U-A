@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>All Teams</title>
+
+</head>
+
+<body onload="getGames();">
+   <p><a href="Teams.html">Home Page</a></p>
+</body>
+<script>
+   let teamData;
+
+   function getGames() {
+      teamData = JSON.parse(localStorage['teams']);
+   }
+
+   /*function addGame() {
+      const game = {
+         'opp': 7,
+         'homescore': 8,
+         'awayscore': 6
+      };
+
+      teamData[1].games.push(game);
+      localStorage.setItem('teams', JSON.stringify(teamData));
+   }*/
+
+   let teams = [];
+   let team = {};
+   team['Name'] = 'Gearheards';
+   team['Number'] = 746;
+   team['W'] = 2;
+   team['L'] = 1;
+   team['PTS'] = team['W']-team['L'];
+   team['games'] = [{
+      'qualnum': 3,
+      'teamall':'red3',
+      'auto':16,
+      'teleop': 28,
+      'fouls': 18,
+      'totscore': team['games.auto']+team['games.teleop']+team['games.fouls'],
+      'result':false
+   }];
+   teams.push(team);
+
+   //HELLLLLOOOOOOOOOOOOOOOOOOOOOOOOO :)
+
+   team = {};
+   team['Name'] = 'Paradigm Shift Robotics';
+   team['Number'] = 2198;
+   team['W'] = 2;
+   team['L'] = 1;
+   team['PTS'] = team['W']-team['L'];
+   team['games'] = [{
+      'qualnum': 3,
+      'teamall':'red2',
+      'auto':16,
+      'teleop': 28,
+      'fouls': 18,
+      'totscore': team['games.auto']+team['games.teleop']+team['games.fouls'],
+      'result':false
+   }];
+   teams.push(team);
+
+   team = {};
+   team['Name'] = 'Santiago';
+   team['Id'] = 3;
+   team['W'] = 1;
+   team['L'] = 3;
+   team['PTS'] = team['W']-team['L'];
+   team['games'] = [{
+      'opp': 1
+   }, {
+      'opp': 2
+   }];
+   teams.push(team);
+
+   team = {};
+   team['Name'] = 'Houston';
+   team['Id'] = 3;
+   team['W'] = 0;
+   team['L'] = 0;
+   team['PTS'] = team['W']-team['L'];
+   team['games'] = [{
+      'opp': 1
+   }, {
+      'opp': 2
+   }];
+   teams.push(team);
+
+    localStorage.setItem('teams', JSON.stringify(teams));
+   
+</script>
+
+</html>
