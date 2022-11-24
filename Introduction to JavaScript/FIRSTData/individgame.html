@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link rel="stylesheet" href="style.css">
     <title>Match List</title> <!--Find out how to get individ team name in document title-->
 </head>
 <body onload="start();">
@@ -24,8 +25,8 @@
       
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start">
-            <a class="navbar-item">
-              Teams
+            <a class="navbar-item" href="Matchs.html">
+              Matches
             </a>
       
             <a class="navbar-item" href="Standings.html">
@@ -104,65 +105,83 @@
             row.appendChild(cell);
 
             cell = document.createElement('td');
-            cell.textContent = game.RedAll[0].stat1;
             link = document.createElement('a');
             link.href = 'individteam.html?Team=' + game.RedAll[0].stat1;
             link.textContent = game.RedAll[0].stat1;
             cell.textContent = '';
+            if(game.Winner == 'R'){
+              cell.classList.add('winner');
+            }
             cell.appendChild(link);
             row.appendChild(cell);
 
             cell = document.createElement('td');
-            cell.textContent = game.RedAll[0].stat2;
             link = document.createElement('a');
             link.href = 'individteam.html?Team=' + game.RedAll[0].stat2;
             link.textContent = game.RedAll[0].stat2;
             cell.textContent = '';
+            if(game.Winner == 'R'){
+              cell.classList.add('winner');
+            }
             cell.appendChild(link);
             row.appendChild(cell);
 
             cell = document.createElement('td');
-            cell.textContent = game.RedAll[0].stat3;
             link = document.createElement('a');
             link.href = 'individteam.html?Team=' + game.RedAll[0].stat3;
             link.textContent = game.RedAll[0].stat3;
             cell.textContent = '';
+            if(game.Winner == 'R'){
+              cell.classList.add('winner');
+            }
             cell.appendChild(link);
             row.appendChild(cell);
 
             cell = document.createElement('td');
-            cell.textContent = game.BlueAll[0].stat1;
             link = document.createElement('a');
             link.href = 'individteam.html?Team=' + game.BlueAll[0].stat1;
             link.textContent = game.BlueAll[0].stat1;
             cell.textContent = '';
+            if(game.Winner == 'B'){
+              cell.classList.add('winner');
+            }
             cell.appendChild(link);
             row.appendChild(cell);
 
             cell = document.createElement('td');
-            cell.textContent = game.BlueAll[0].stat2;
             link = document.createElement('a');
             link.href = 'individteam.html?Team=' + game.BlueAll[0].stat2;
             link.textContent = game.BlueAll[0].stat2;
             cell.textContent = '';
+            if(game.Winner == 'B'){
+              cell.classList.add('winner');
+            }
             cell.appendChild(link);
             row.appendChild(cell);
 
             cell = document.createElement('td');
-            cell.textContent = game.BlueAll[0].stat3;
             link = document.createElement('a');
             link.href = 'individteam.html?Team=' + game.BlueAll[0].stat3;
             link.textContent = game.BlueAll[0].stat3;
             cell.textContent = '';
+            if(game.Winner == 'B'){
+              cell.classList.add('winner');
+            }
             cell.appendChild(link);
             row.appendChild(cell);
 
             cell = document.createElement('td');
-            cell.textContent = game.RedAll[0].totscore;
+            cell.textContent = game.RedAll[0].auto + game.RedAll[0].teleop + game.RedAll[0].fouls;
+            if(game.Winner == 'R'){
+              cell.classList.add('winner');
+            }
             row.appendChild(cell);
 
             cell = document.createElement('td');
-            cell.textContent = game.BlueAll[0].totscore;
+            cell.textContent = game.BlueAll[0].auto + game.BlueAll[0].teleop + game.BlueAll[0].fouls;
+            if(game.Winner == 'B'){
+              cell.classList.add('winner');
+            }
             row.appendChild(cell);
 
             tableBody.appendChild(row);
@@ -212,13 +231,13 @@
 
         row = document.createElement('tr');
         cell = document.createElement('td');
-        cell.textContent = game.RedAll[0].totscore;
+        cell.textContent = game.RedAll[0].auto + game.RedAll[0].teleop + game.RedAll[0].fouls;
         row.appendChild(cell);
         cell = document.createElement('td');
         cell.textContent = "Total Score";
         row.appendChild(cell);
         cell = document.createElement('td');
-        cell.textContent = game.BlueAll[0].totscore;
+        cell.textContent = game.BlueAll[0].auto + game.BlueAll[0].teleop + game.BlueAll[0].fouls;;
         row.appendChild(cell);
         tableBody.appendChild(row);
 

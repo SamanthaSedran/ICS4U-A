@@ -4,22 +4,151 @@
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+   <link rel="stylesheet" href="style.css">
    <title>Admin</title>
 
 </head>
 
-<body onload="getGames();">
-   <p><a href="Matchs.html">Home Page</a></p>
+<body onload="initGames();">
+   <nav class="navbar" role="navigation" aria-label="main navigation">
+       <div class="navbar-brand">
+         <a class="navbar-item" href="Matchs.html">
+           <img src="Images/first-horz-rgb.png" width="112" height="28">
+         </a>
+     
+         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+           <span aria-hidden="true"></span>
+           <span aria-hidden="true"></span>
+           <span aria-hidden="true"></span>
+         </a>
+       </div>
+     
+       <div id="navbarBasicExample" class="navbar-menu">
+         <div class="navbar-start">
+           <a class="navbar-item" href="Matchs.html">
+             Matches
+           </a>
+     
+           <a class="navbar-item" href="Standings.html">
+             Standings
+           </a>
+           </div>
+         </div>
+     
+       </div>
+       <div class="navbar-end">
+         <div class="navbar-item">
+           <div class="buttons">
+             <a class="button is-danger is-outlined" href="Admin.html">
+               <strong>Admin</strong>
+             </a>
+           </div>
+         </div>
+       </div>
+     </nav>
+
+     <section>
+     <div class="has-text-centered card">
+      <h1 class="title">Enter a New Game</h1>
+      <div class="qualfield">
+        <h3 class="title is-5">Qualification Match: </h3>
+      <input class="input qual" id="Qual" type="text" placeholder="Qualification Match Number">
+    </div>
+      <div class="allianceboxes">
+         <h3 class="title is-5">Red Alliance</h3>
+         <h3 class="title is-5">Blue Alliance</h3>
+      </div>
+      
+      <div class="columns">
+         <div class="column">
+            <label class="label">Teams</label>
+            <input class="input" type="text" id="RStat1" placeholder="Station 1">
+            <input class="input" type="text" id="RStat2" placeholder="Station 2">
+            <input class="input" type="text" id="RStat3" placeholder="Station 3">
+         </div>
+
+         <div class="column">
+            <label class="label">Point Data</label>
+            <input class="input" type="text" id="RAuto" placeholder="Total Auto">
+            <input class="input" type="text" id="RTeleop" placeholder="Total Teleop">
+            <input class="input" type="text" id="RBFouls" placeholder="Fouls by Blue Alliance">
+            
+         </div>
+
+         <div class="column matchdata">
+            <label class="label">Match Data</label>
+            <input class="input" type="text" id="RRP" placeholder="Ranking Points">
+            <div class="control">
+               <div class="select">
+                 <select id="ROutcome">
+                   <option>Outcome</option>
+                   <option>Winner</option>
+                   <option>Loser</option>
+                   <option>Tie</option>
+                 </select>
+               </div>
+             </div>
+         </div>
+
+         <div class="column">
+          <label class="label">Teams</label>
+          <input class="input" type="text" id="BStat1" placeholder="Station 1">
+          <input class="input" type="text" id="BStat2" placeholder="Station 2">
+          <input class="input" type="text" id="BStat3" placeholder="Station 3">
+       </div>
+
+       <div class="column">
+          <label class="label">Point Data</label>
+          <input class="input" type="text" id="BAuto" placeholder="Total Auto">
+          <input class="input" type="text" id="BTeleop" placeholder="Total Teleop">
+          <input class="input" type="text" id="BRFouls" placeholder="Fouls by Blue Alliance">
+       </div>
+
+       <div class="column matchdata">
+          <label class="label">Match Data</label>
+          <input class="input" type="text" id="BRP" placeholder="Ranking Points">
+          <div class="control">
+             <div class="select">
+               <select id="BOutcome">
+                 <option>Outcome</option>
+                 <option>Winner</option>
+                 <option>Loser</option>
+                 <option>Tie</option>
+               </select>
+             </div>
+           </div>
+       </div>
+         </div>
+            <a class="button is-light" id="submit">
+              <strong>Submit</strong>
+            </a>
+
+      </div>
+    </section>
+   
 </body>
 <script>
-   let gameData;
+   document.getElementById("submit").addEventListener("click", addData);
+   let games = [];
+
+  
 
    function getGames() {
-      gameData = JSON.parse(localStorage['games']);
+    games = JSON.parse(localStorage['games']);
    }
 
-   let games = [];
+   function removeGame(num){
+    games = JSON.parse(localStorage['games']);
+    games.splice(num, 1);
+    localStorage.setItem('games', JSON.stringify(games));
+
+
+   }
+
+
+function initGames(){
    let game = {};
    game['Qual'] = 1;
    game['Winner'] = 'R';
@@ -30,7 +159,6 @@
     'auto':6,
     'teleop':17,
     'fouls':4,
-    'totscore':6+17+4,
     'rp':2
    }];
    game['BlueAll'] = [{
@@ -40,7 +168,6 @@
     'auto':2,
     'teleop':0,
     'fouls':0,
-    'totscore': 2,
     'rp':0
    }];
    games.push(game);
@@ -57,7 +184,6 @@
     'auto':6,
     'teleop':7,
     'fouls':4,
-    'totscore': 6+7+4,
     'rp':0
    }];
    game['BlueAll'] = [{
@@ -67,7 +193,6 @@
     'auto':8,
     'teleop':28,
     'fouls':0,
-    'totscore': 8+28,
     'rp':2
    }];
    games.push(game);
@@ -82,7 +207,6 @@
     'auto':2,
     'teleop':0,
     'fouls':8,
-    'totscore': 2+8,
     'rp':0
    }];
    game['BlueAll'] = [{
@@ -92,12 +216,89 @@
     'auto':6,
     'teleop':13,
     'fouls':12,
-    'totscore': 6+12+13,
     'rp':2
    }];
    games.push(game);
-   
+
+   game = {};
+   game['Qual'] = 4;
+   game['Winner'] = 'B';
+   game['RedAll'] = [{
+    'stat1':5032,
+    'stat2':4015,
+    'stat3':865,
+    'auto':8,
+    'teleop':18,
+    'fouls':8,
+    'rp':0
+   }];
+   game['BlueAll'] = [{
+    'stat1':771,
+    'stat2':2200,
+    'stat3':610,
+    'auto':16,
+    'teleop':36,
+    'fouls':0,
+    'rp':2
+   }];
+   games.push(game);
    localStorage.setItem('games', JSON.stringify(games));
+
+  }
+
+   function checkErrors(){
+    if(isNaN(document.getElementById("Qual").value)){
+      alert('Not a number! Please enter another qualification match number.')
+    }
+    
+    games.forEach((game) => {
+      if(document.getElementById("Qual").value == game.Qual){
+        alert("This qualification match has already been entered in the system. Please enter another match.");
+      }
+    })
+
+    if(isNaN(document.getElementById("RStat1").value)){
+      alert('Not a number! Please enter another qualification match number.')
+    }
+
+   }
+
+   function addData(){
+      let game = {};
+      game['Qual'] = parseInt(document.getElementById("Qual").value);
+      if(document.querySelector('#ROutcome').value == 'Winner'){
+        game['Winner'] = 'R';
+      }else if(document.querySelector('#BOutcome').value == 'Winner'){
+        game['Winner'] = 'B';
+      }else{
+        game['Winner'] = 'T';
+      }
+      game['RedAll'] = [{
+       'stat1':document.getElementById("RStat1").value,
+       'stat2':document.getElementById("RStat2").value,
+       'stat3':document.getElementById("RStat3").value,
+       'auto':document.getElementById("RAuto").value,
+       'teleop':document.getElementById("RTeleop").value,
+       'fouls':document.getElementById("RBFouls").value,
+       'rp':document.getElementById("RRP").value
+      }];
+      game['BlueAll'] = [{
+        'stat1':document.getElementById("BStat1").value,
+       'stat2':document.getElementById("BStat2").value,
+       'stat3':document.getElementById("BStat3").value,
+       'auto':document.getElementById("BAuto").value,
+       'teleop':document.getElementById("BTeleop").value,
+       'fouls':document.getElementById("BRFouls").value,
+       'rp':document.getElementById("BRP").value
+      }];
+      games.push(game);
+
+      console.log(games);
+      localStorage.setItem('games', JSON.stringify(games));
+      }
+
+   
+   
    
 </script>
 

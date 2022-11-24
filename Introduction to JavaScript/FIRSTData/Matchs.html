@@ -25,7 +25,7 @@
       
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start">
-            <a href="Matchs.htmls" class="navbar-item current">
+            <a href="Matchs.html" class="navbar-item current">
               Matches
             </a>
       
@@ -91,6 +91,9 @@
             link.href = 'individteam.html?Team=' + game.RedAll[0].stat1;
             link.textContent = game.RedAll[0].stat1;
             cell.textContent = '';
+            if(game.Winner == 'R'){
+              cell.classList.add('winner');
+            }
             cell.appendChild(link);
             row.appendChild(cell);
 
@@ -100,6 +103,9 @@
             link.href = 'individteam.html?Team=' + game.RedAll[0].stat2;
             link.textContent = game.RedAll[0].stat2;
             cell.textContent = '';
+            if(game.Winner == 'R'){
+              cell.classList.add('winner');
+            }
             cell.appendChild(link);
             row.appendChild(cell);
 
@@ -109,6 +115,9 @@
             link.href = 'individteam.html?Team=' + game.RedAll[0].stat3;
             link.textContent = game.RedAll[0].stat3;
             cell.textContent = '';
+            if(game.Winner == 'R'){
+              cell.classList.add('winner');
+            }
             cell.appendChild(link);
             row.appendChild(cell);
 
@@ -118,6 +127,9 @@
             link.href = 'individteam.html?Team=' + game.BlueAll[0].stat1;
             link.textContent = game.BlueAll[0].stat1;
             cell.textContent = '';
+            if(game.Winner == 'B'){
+              cell.classList.add('winner');
+            }
             cell.appendChild(link);
             row.appendChild(cell);
 
@@ -127,6 +139,9 @@
             link.href = 'individteam.html?Team=' + game.BlueAll[0].stat2;
             link.textContent = game.BlueAll[0].stat2;
             cell.textContent = '';
+            if(game.Winner == 'B'){
+              cell.classList.add('winner');
+            }
             cell.appendChild(link);
             row.appendChild(cell);
 
@@ -136,15 +151,24 @@
             link.href = 'individteam.html?Team=' + game.BlueAll[0].stat3;
             link.textContent = game.BlueAll[0].stat3;
             cell.textContent = '';
+            if(game.Winner == 'B'){
+              cell.classList.add('winner');
+            }
             cell.appendChild(link);
             row.appendChild(cell);
 
             cell = document.createElement('td');
-            cell.textContent = game.RedAll[0].totscore;
+            cell.textContent = game.RedAll[0].auto + game.RedAll[0].teleop + game.RedAll[0].fouls;;
+            if(game.Winner == 'R'){
+              cell.classList.add('winner');
+            }
             row.appendChild(cell);
 
             cell = document.createElement('td');
-            cell.textContent = game.BlueAll[0].totscore;
+            cell.textContent = game.BlueAll[0].auto + game.BlueAll[0].teleop + game.BlueAll[0].fouls;
+            if(game.Winner == 'B'){
+              cell.classList.add('winner');
+            }
             row.appendChild(cell);
 
             tableBody.appendChild(row);
@@ -159,9 +183,9 @@
         if(field == 'Qual'){
             games = games.sort((gameA, gameB) => gameA.Qual - gameB.Qual);
         }else if(field === 'PTSRed'){
-            games = games.sort((gameA, gameB) => gameB.RedAll[0].totscore - gameA.RedAll[0].totscore);
+            games = games.sort((gameA, gameB) => gameB.RedAll[0].auto + gameB.RedAll[0].teleop + gameB.RedAll[0].fouls - (gameA.RedAll[0].auto + gameA.RedAll[0].teleop + gameA.RedAll[0].fouls));
         }else if(field === 'PTSBlue'){
-            games = games.sort((gameA, gameB) => gameB.BlueAll[0].totscore - gameA.BlueAll[0].totscore);
+            games = games.sort((gameA, gameB) => gameB.BlueAll[0].auto + gameB.BlueAll[0].teleop + gameB.BlueAll[0].fouls - (gameA.BlueAll[0].auto + gameA.BlueAll[0].teleop + gameA.BlueAll[0].fouls));
         }
 
         createTable(games);
