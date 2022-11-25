@@ -92,7 +92,7 @@
             link.textContent = game.RedAll[0].stat1;
             cell.textContent = '';
             if(game.Winner == 'R'){
-              cell.classList.add('winner');
+              cell.classList.add('has-text-weight-bold');
             }
             cell.appendChild(link);
             row.appendChild(cell);
@@ -104,7 +104,7 @@
             link.textContent = game.RedAll[0].stat2;
             cell.textContent = '';
             if(game.Winner == 'R'){
-              cell.classList.add('winner');
+              cell.classList.add('has-text-weight-bold');
             }
             cell.appendChild(link);
             row.appendChild(cell);
@@ -116,7 +116,7 @@
             link.textContent = game.RedAll[0].stat3;
             cell.textContent = '';
             if(game.Winner == 'R'){
-              cell.classList.add('winner');
+              cell.classList.add('has-text-weight-bold');
             }
             cell.appendChild(link);
             row.appendChild(cell);
@@ -128,7 +128,7 @@
             link.textContent = game.BlueAll[0].stat1;
             cell.textContent = '';
             if(game.Winner == 'B'){
-              cell.classList.add('winner');
+              cell.classList.add('has-text-weight-bold');
             }
             cell.appendChild(link);
             row.appendChild(cell);
@@ -140,7 +140,7 @@
             link.textContent = game.BlueAll[0].stat2;
             cell.textContent = '';
             if(game.Winner == 'B'){
-              cell.classList.add('winner');
+              cell.classList.add('has-text-weight-bold');
             }
             cell.appendChild(link);
             row.appendChild(cell);
@@ -152,7 +152,7 @@
             link.textContent = game.BlueAll[0].stat3;
             cell.textContent = '';
             if(game.Winner == 'B'){
-              cell.classList.add('winner');
+              cell.classList.add('has-text-weight-bold');
             }
             cell.appendChild(link);
             row.appendChild(cell);
@@ -160,14 +160,14 @@
             cell = document.createElement('td');
             cell.textContent = game.RedAll[0].auto + game.RedAll[0].teleop + game.RedAll[0].fouls;;
             if(game.Winner == 'R'){
-              cell.classList.add('winner');
+              cell.classList.add('has-text-weight-bold');
             }
             row.appendChild(cell);
 
             cell = document.createElement('td');
             cell.textContent = game.BlueAll[0].auto + game.BlueAll[0].teleop + game.BlueAll[0].fouls;
             if(game.Winner == 'B'){
-              cell.classList.add('winner');
+              cell.classList.add('has-text-weight-bold');
             }
             row.appendChild(cell);
 

@@ -1,49 +1,18 @@
-body {
-  background-color: dimgray;
+section{
+  background-color: #f4f4f4;
 }
 
-.winner{
-    font-weight: bold;
-  }
+/**Admin */
 
-.container{
-  border-radius: 7px;
-  padding: 20px;
-  background-color: #0066B3;
+.card{
+  width: 80%;
+}
+
+#Qual{
+  width: 26%;
+}
+
+footer{
   color: black;
-  background-image: linear-gradient(#000, #000);
-  background-size: 2px 60%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  margin-top: 10px;
-}
-
-.title, .label{
-  color: black;
-}
-
-.allianceboxes{
-  display: flex;
-  justify-content: space-around;
-}
-
-.input{
-  margin: 4px;
-}
-
-.control{
-  margin-top: 4px;
-}
-
-.qual{
-  width: 17.5%;
-}
-
-.qualfield{
-  display: flex;
-  justify-content: center;
-}
-
-.matchdata{
-  display: flex-column;
+  background-color: white;
 }

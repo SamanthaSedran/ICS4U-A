@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+   <link rel="stylesheet" href="style.css">
+   <title>Admin</title>
+
+</head>
+
+<body>
+   <nav class="navbar" role="navigation" aria-label="main navigation">
+       <div class="navbar-brand">
+         <a class="navbar-item" href="Matchs.html">
+           <img src="Images/first-horz-rgb.png" width="112" height="28">
+         </a>
+     
+         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+           <span aria-hidden="true"></span>
+           <span aria-hidden="true"></span>
+           <span aria-hidden="true"></span>
+         </a>
+       </div>
+     
+       <div id="navbarBasicExample" class="navbar-menu">
+         <div class="navbar-start">
+           <a class="navbar-item" href="Matchs.html">
+             Matches
+           </a>
+     
+           <a class="navbar-item" href="Standings.html">
+             Standings
+           </a>
+           </div>
+         </div>
+     
+       </div>
+       <div class="navbar-end">
+         <div class="navbar-item">
+           <div class="buttons">
+             <a class="button is-light" href="Admin.html">
+               <p>Admin</p>
+             </a>
+           </div>
+         </div>
+       </div>
+     </nav>
+
+     <section class="is-flex is-align-items-center is-flex-direction-column">
+      <div class="card m-2 py-4 px-5 is-flex is-flex-direction-row is-justify-content-space-between">
+        <div class="is-flex is-flex-direction-row is-align-items-center">
+          <label class="label m-1">Qualification Match Number:</label>
+          <input class="input qual m-1" id="Qual" type="text" placeholder="Qualification">
+        </div>
+        <div>
+          <button class="button is-light">Submit</button>
+        </div>
+      </div>
+
+      <div class="card m-2 p-5 has-background-danger-light">
+        <h1 class="title is-4 is-flex is-justify-content-center">Red Alliance</h1>
+        <div class="columns">
+        <div class="column">
+          <label class="label m-1">Teams</label>
+          <input class="input m-1" type="text" id="RStat1" placeholder="Station 1">
+          <input class="input m-1" type="text" id="RStat2" placeholder="Station 2">
+          <input class="input m-1" type="text" id="RStat3" placeholder="Station 3">
+       </div>
+
+       <div class="column">
+          <label class="label m-1">Point Data</label>
+          <input class="input m-1" type="text" id="RAuto" placeholder="Total Auto">
+          <input class="input m-1" type="text" id="RTeleop" placeholder="Total Teleop">
+          <input class="input m-1" type="text" id="RBFouls" placeholder="Fouls by Blue Alliance">
+          
+       </div>
+
+       <div class="column">
+          <label class="label m-1">Match Data</label>
+          <input class="input m-1" type="text" id="RRP" placeholder="Ranking Points">
+
+          <div class="control m-1">
+            <div class="select">
+              <select id="ROutcome">
+                <option>Outcome</option>
+                <option>Winner</option>
+                <option>Loser</option>
+                <option>Tie</option>
+              </select>
+            </div>
+          </div>
+
+       </div>
+
+      </div>
+      </div>
+
+      <div class="card m-2 p-5 has-background-link-light">
+        <h1 class="title is-4 is-flex is-justify-content-center">Blue Alliance</h1>
+        <div class="columns">
+        <div class="column">
+          <label class="label m-1">Teams</label>
+          <input class="input m-1" type="text" id="BStat1" placeholder="Station 1">
+          <input class="input m-1" type="text" id="BStat2" placeholder="Station 2">
+          <input class="input m-1" type="text" id="BStat3" placeholder="Station 3">
+       </div>
+
+       <div class="column">
+          <label class="label m-1">Point Data</label>
+          <input class="input m-1" type="text" id="BAuto" placeholder="Total Auto">
+          <input class="input m-1" type="text" id="BTeleop" placeholder="Total Teleop">
+          <input class="input m-1" type="text" id="BRFouls" placeholder="Fouls by Blue Alliance">
+          
+       </div>
+
+       <div class="column">
+          <label class="label m-1">Match Data</label>
+          <input class="input m-1" type="text" id="BRP" placeholder="Ranking Points">
+
+          <div class="control m-1">
+            <div class="select">
+              <select id="BOutcome">
+                <option>Outcome</option>
+                <option>Winner</option>
+                <option>Loser</option>
+                <option>Tie</option>
+              </select>
+            </div>
+          </div>
+
+       </div>
+
+      </div>
+
+     </section>
+   
+</body>

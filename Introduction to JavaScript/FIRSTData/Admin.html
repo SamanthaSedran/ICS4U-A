@@ -11,122 +11,137 @@
 
 </head>
 
-<body onload="initGames();">
-   <nav class="navbar" role="navigation" aria-label="main navigation">
-       <div class="navbar-brand">
-         <a class="navbar-item" href="Matchs.html">
-           <img src="Images/first-horz-rgb.png" width="112" height="28">
-         </a>
-     
-         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-           <span aria-hidden="true"></span>
-           <span aria-hidden="true"></span>
-           <span aria-hidden="true"></span>
-         </a>
-       </div>
-     
-       <div id="navbarBasicExample" class="navbar-menu">
-         <div class="navbar-start">
-           <a class="navbar-item" href="Matchs.html">
-             Matches
-           </a>
-     
-           <a class="navbar-item" href="Standings.html">
-             Standings
-           </a>
-           </div>
-         </div>
-     
-       </div>
-       <div class="navbar-end">
-         <div class="navbar-item">
-           <div class="buttons">
-             <a class="button is-danger is-outlined" href="Admin.html">
-               <strong>Admin</strong>
-             </a>
-           </div>
-         </div>
-       </div>
-     </nav>
-
-     <section>
-     <div class="has-text-centered card">
-      <h1 class="title">Enter a New Game</h1>
-      <div class="qualfield">
-        <h3 class="title is-5">Qualification Match: </h3>
-      <input class="input qual" id="Qual" type="text" placeholder="Qualification Match Number">
+<body onload="getGames();">
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="Matchs.html">
+        <img src="Images/first-horz-rgb.png" width="112" height="28">
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
     </div>
-      <div class="allianceboxes">
-         <h3 class="title is-5">Red Alliance</h3>
-         <h3 class="title is-5">Blue Alliance</h3>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="Matchs.html">
+          Matches
+        </a>
+  
+        <a class="navbar-item" href="Standings.html">
+          Standings
+        </a>
+        </div>
       </div>
-      
-      <div class="columns">
-         <div class="column">
-            <label class="label">Teams</label>
-            <input class="input" type="text" id="RStat1" placeholder="Station 1">
-            <input class="input" type="text" id="RStat2" placeholder="Station 2">
-            <input class="input" type="text" id="RStat3" placeholder="Station 3">
-         </div>
-
-         <div class="column">
-            <label class="label">Point Data</label>
-            <input class="input" type="text" id="RAuto" placeholder="Total Auto">
-            <input class="input" type="text" id="RTeleop" placeholder="Total Teleop">
-            <input class="input" type="text" id="RBFouls" placeholder="Fouls by Blue Alliance">
-            
-         </div>
-
-         <div class="column matchdata">
-            <label class="label">Match Data</label>
-            <input class="input" type="text" id="RRP" placeholder="Ranking Points">
-            <div class="control">
-               <div class="select">
-                 <select id="ROutcome">
-                   <option>Outcome</option>
-                   <option>Winner</option>
-                   <option>Loser</option>
-                   <option>Tie</option>
-                 </select>
-               </div>
-             </div>
-         </div>
-
-         <div class="column">
-          <label class="label">Teams</label>
-          <input class="input" type="text" id="BStat1" placeholder="Station 1">
-          <input class="input" type="text" id="BStat2" placeholder="Station 2">
-          <input class="input" type="text" id="BStat3" placeholder="Station 3">
-       </div>
-
-       <div class="column">
-          <label class="label">Point Data</label>
-          <input class="input" type="text" id="BAuto" placeholder="Total Auto">
-          <input class="input" type="text" id="BTeleop" placeholder="Total Teleop">
-          <input class="input" type="text" id="BRFouls" placeholder="Fouls by Blue Alliance">
-       </div>
-
-       <div class="column matchdata">
-          <label class="label">Match Data</label>
-          <input class="input" type="text" id="BRP" placeholder="Ranking Points">
-          <div class="control">
-             <div class="select">
-               <select id="BOutcome">
-                 <option>Outcome</option>
-                 <option>Winner</option>
-                 <option>Loser</option>
-                 <option>Tie</option>
-               </select>
-             </div>
-           </div>
-       </div>
-         </div>
-            <a class="button is-light" id="submit">
-              <strong>Submit</strong>
-            </a>
-
+  
+    </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-light" href="Admin.html">
+            <p>Admin</p>
+          </a>
+        </div>
       </div>
-    </section>
+    </div>
+  </nav>
+
+  <section class="is-flex is-align-items-center is-flex-direction-column">
+   <div class="card m-2 py-4 px-5 is-flex is-flex-direction-row is-justify-content-space-between">
+     <div class="is-flex is-flex-direction-row is-align-items-center">
+       <label class="label m-1">Qualification Match Number:</label>
+       <input class="input qual m-1" id="Qual" type="text" placeholder="Qualification">
+     </div>
+     <div>
+       <button class="button is-light" id="submit">Submit</button>
+     </div>
+   </div>
+
+   <div class="card m-2 p-5 has-background-danger-light">
+     <h1 class="title is-4 is-flex is-justify-content-center">Red Alliance</h1>
+     <div class="columns">
+     <div class="column">
+       <label class="label m-1">Teams</label>
+       <input class="input m-1" type="text" id="RStat1" placeholder="Station 1">
+       <input class="input m-1" type="text" id="RStat2" placeholder="Station 2">
+       <input class="input m-1" type="text" id="RStat3" placeholder="Station 3">
+    </div>
+
+    <div class="column">
+       <label class="label m-1">Point Data</label>
+       <input class="input m-1" type="text" id="RAuto" placeholder="Total Auto">
+       <input class="input m-1" type="text" id="RTeleop" placeholder="Total Teleop">
+       <input class="input m-1" type="text" id="RBFouls" placeholder="Fouls by Blue Alliance">
+       
+    </div>
+
+    <div class="column">
+       <label class="label m-1">Match Data</label>
+       <input class="input m-1" type="text" id="RRP" placeholder="Ranking Points">
+
+       <div class="control m-1">
+         <div class="select">
+           <select id="ROutcome">
+             <option>Outcome</option>
+             <option>Winner</option>
+             <option>Loser</option>
+             <option>Tie</option>
+           </select>
+         </div>
+       </div>
+
+    </div>
+
+   </div>
+   </div>
+
+   <div class="card m-2 p-5 has-background-link-light">
+     <h1 class="title is-4 is-flex is-justify-content-center">Blue Alliance</h1>
+     <div class="columns">
+     <div class="column">
+       <label class="label m-1">Teams</label>
+       <input class="input m-1" type="text" id="BStat1" placeholder="Station 1">
+       <input class="input m-1" type="text" id="BStat2" placeholder="Station 2">
+       <input class="input m-1" type="text" id="BStat3" placeholder="Station 3">
+    </div>
+
+    <div class="column">
+       <label class="label m-1">Point Data</label>
+       <input class="input m-1" type="text" id="BAuto" placeholder="Total Auto">
+       <input class="input m-1" type="text" id="BTeleop" placeholder="Total Teleop">
+       <input class="input m-1" type="text" id="BRFouls" placeholder="Fouls by Blue Alliance">
+       
+    </div>
+
+    <div class="column">
+       <label class="label m-1">Match Data</label>
+       <input class="input m-1" type="text" id="BRP" placeholder="Ranking Points">
+
+       <div class="control m-1">
+         <div class="select">
+           <select id="BOutcome">
+             <option>Outcome</option>
+             <option>Winner</option>
+             <option>Loser</option>
+             <option>Tie</option>
+           </select>
+         </div>
+       </div>
+
+    </div>
+
+   </div>
+
+  </section>
+
+  <footer>
+    <div class="content has-text-centered m-3 p-2">
+      <p class="title is-6"> DHARMA Initiative Competitive Robotics Dept. Copyright &copy 2022</p>
+    </div>
+  </footer>
    
 </body>
 <script>
@@ -274,22 +289,22 @@ function initGames(){
         game['Winner'] = 'T';
       }
       game['RedAll'] = [{
-       'stat1':document.getElementById("RStat1").value,
-       'stat2':document.getElementById("RStat2").value,
-       'stat3':document.getElementById("RStat3").value,
-       'auto':document.getElementById("RAuto").value,
-       'teleop':document.getElementById("RTeleop").value,
-       'fouls':document.getElementById("RBFouls").value,
-       'rp':document.getElementById("RRP").value
+       'stat1':parseInt(document.getElementById("RStat1").value),
+       'stat2':parseInt(document.getElementById("RStat2").value),
+       'stat3':parseInt(document.getElementById("RStat3").value),
+       'auto':parseInt(document.getElementById("RAuto").value),
+       'teleop':parseInt(document.getElementById("RTeleop").value),
+       'fouls':parseInt(document.getElementById("RBFouls").value),
+       'rp':parseInt(document.getElementById("RRP").value)
       }];
       game['BlueAll'] = [{
-        'stat1':document.getElementById("BStat1").value,
-       'stat2':document.getElementById("BStat2").value,
-       'stat3':document.getElementById("BStat3").value,
-       'auto':document.getElementById("BAuto").value,
-       'teleop':document.getElementById("BTeleop").value,
-       'fouls':document.getElementById("BRFouls").value,
-       'rp':document.getElementById("BRP").value
+        'stat1':parseInt(document.getElementById("BStat1").value),
+       'stat2':parseInt(document.getElementById("BStat2").value),
+       'stat3':parseInt(document.getElementById("BStat3").value),
+       'auto':parseInt(document.getElementById("BAuto").value),
+       'teleop':parseInt(document.getElementById("BTeleop").value),
+       'fouls':parseInt(document.getElementById("BRFouls").value),
+       'rp':parseInt(document.getElementById("BRP").value)
       }];
       games.push(game);
 
