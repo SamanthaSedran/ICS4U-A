@@ -12,7 +12,40 @@ section{
   width: 26%;
 }
 
+#teamnum{
+  width: 29%;
+}
+
 footer{
   color: black;
   background-color: white;
 }
+
+.admin{
+  color: #4A4A4A;
+}
+
+.adminbutton{
+  margin-bottom: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.light-red{
+  background-color: #fff4f6;
+}
+
+.light-blue{
+  background-color: #f7f8ff;
+}
+
+
+@media(max-width:1000px){
+  .teaminfoandstats{
+    display: flex;
+    flex-direction: column;
+  }
+}
+

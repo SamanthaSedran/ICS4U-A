@@ -7,41 +7,47 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
     <link rel="stylesheet" href="style.css">
-    <title>Standings</title> <!--Find out how to get individ team name in document title-->
+    <title>Standings</title> 
 </head>
 <body onload="start();">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
-            <img src="Images/first-horz-rgb.png" width="112" height="28">
-          </a>
-      
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="Matchs.html">
+        <img src="Images/first-horz-rgb.png" width="112" height="28">
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="Matchs.html">
+          Matches
+        </a>
+  
+        <a class="navbar-item" href="Standings.html">
+          Standings
+        </a>
+        </div>
+
+      <div id="adminbtnouterouter" class="navbar-item adminbutton">
+        <div id="adminbtnouter">
+          <a id="adminbtninner" href="Admin.html">
+            <p class="admin">Admin</p>
           </a>
         </div>
-      
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item" href="Matchs.html">
-              Matches
-            </a>
-      
-            <a class="navbar-item current" href="Standings.html">
-              Standings
-            </a>
-      
-            <a class="navbar-item" href="Admin.html">
-                Admin
-              </a>
-            </div>
-          </div>
-      
-        </div>
-      </nav>
-    <table id="standings" class="table is-striped">
+      </div>
+    </div>
+  </nav>
+
+  <section class="is-flex is-align-items-center is-flex-direction-column">
+    <div class="card m-2 p-2">
+
+    <table id="standings" class="table is-striped table is-bordered is-fullwidth">
         <thead> <!--Header section of the table-->
             <tr>
               <th onclick="sort('Rank');">Rank</th>
@@ -58,224 +64,24 @@
 
         </tbody>
     </table>
+
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+      <a class="pagination-previous button mb-3 mx-1" id="previous">Previous</a>
+      <a class="pagination-next button mb-3 mx-1" id="next">Next page</a>
+      <ul class="pagination-list mb-2">
+        <li><a class="pagination-link is-current button" id="button1">1</a></li>
+        <li><a class="pagination-link button" id="button2">2</a></li>
+      </ul>
+    </nav>
+  </div>
+  </section>
+
+  <footer>
+    <div class="content has-text-centered m-3 p-2">
+      <p class="title is-6"> DHARMA Initiative Competitive Robotics Dept. Copyright &copy 2022</p>
+    </div>
+  </footer>
     
 </body>
-<script>
-    function start() {
-      let games = JSON.parse(localStorage['games']);
-      //let rankedteams = rankTeams(createTeamsList(games));
-      rank(detailedTeams(createTeamsList(games), games));
-    }
-
-    function getTeams(){
-      let games = JSON.parse(localStorage['games']);
-      return detailedTeams(createTeamsList(games), games);
-    }
-
-    //Creates an array of teams with their average match data
-    function detailedTeams(teams, games){
-      let moreinfoteams = [];
-
-      teams.forEach((team) => {
-        //let onlyteam = newTeamArray(team, games);
-        let autoavg = 0;
-        let teleopavg = 0;
-        let foulavg = 0;
-        let totscoreavg = 0;
-        let rankingavg = 0;
-        let wins = 0;
-        let ties = 0;
-        let totteamgames = 0;
-
-        games.forEach((game) => {
-        if(game.RedAll[0].stat1 == team || game.RedAll[0].stat2 == team || game.RedAll[0].stat3 == team){
-            autoavg += game.RedAll[0].auto;
-            teleopavg += game.RedAll[0].teleop;
-            foulavg += game.BlueAll[0].fouls;
-            totscoreavg += game.RedAll[0].auto + game.RedAll[0].teleop + game.RedAll[0].fouls;;
-            rankingavg += game.RedAll[0].rp;
-            totteamgames++;
-            if(game.Winner == 'R'){
-              wins += 1;
-            }
-
-        }
-        if(game.BlueAll[0].stat1 == team || game.BlueAll[0].stat2 == team || game.BlueAll[0].stat3 == team){
-            autoavg += game.BlueAll[0].auto;
-            teleopavg += game.BlueAll[0].teleop;
-            foulavg += game.RedAll[0].fouls;
-            totscoreavg += game.BlueAll[0].auto + game.BlueAll[0].teleop + game.BlueAll[0].fouls;;
-            rankingavg += game.BlueAll[0].rp;
-            totteamgames++;
-            if(game.Winner == 'B'){
-              wins += 1;
-            }
-        }
-        if(game.Winner == 'T'){
-          ties += 1;
-        }
-        });
-
-        autoavg /= totteamgames;
-        teleopavg /= totteamgames;
-        foulavg /= totteamgames;
-        totscoreavg /= totteamgames;
-        let rankingtot = rankingavg;
-        rankingavg /= totteamgames;
-
-        let detailteam = {};
-        detailteam['TeamNum'] = team;
-        detailteam['AutoAvg'] = autoavg;
-        detailteam['TeleopAvg'] = teleopavg;
-        detailteam['FoulAvg'] = foulavg;
-        detailteam['TotscoreAvg'] = totscoreavg;
-        detailteam['TotRP'] = rankingtot;
-        detailteam['RPAvg'] = rankingavg;
-        detailteam['Wins'] = wins;
-        detailteam['Ties'] = ties;
-        detailteam['Losses'] = totteamgames - wins - ties;
-        detailteam['Rank'] = 0;
-        moreinfoteams.push(detailteam);
-        
-      });
-
-      return moreinfoteams;
-
-    }
-
-    //Creates a new array of games of only games that team num is in
-    function newTeamArray(num, games){
-      let newGames = [];
-      games.forEach((game) => {
-        if(game.RedAll[0].stat1 == num || game.RedAll[0].stat2 == num || game.RedAll[0].stat3 == num){
-              newGames.push(game);
-        }
-        if(game.BlueAll[0].stat1 == num || game.BlueAll[0].stat2 == num || game.BlueAll[0].stat3 == num){
-           newGames.push(game);
-        }
-        });
-        return newGames;
-
-    }
-
-    //Creates an array of all team numbers in no particular order
-    function createTeamsList(games){
-        let teams = [];
-        games.forEach((game) => {
-            if(!teams.includes(game.RedAll[0].stat1)){
-                teams.push(game.RedAll[0].stat1);
-            }
-            if(!teams.includes(game.RedAll[0].stat2)){
-                teams.push(game.RedAll[0].stat2);
-            }
-            if(!teams.includes(game.RedAll[0].stat3)){
-                teams.push(game.RedAll[0].stat3);
-            }
-            if(!teams.includes(game.BlueAll[0].stat1)){
-                teams.push(game.BlueAll[0].stat1);
-            }
-            if(!teams.includes(game.BlueAll[0].stat2)){
-                teams.push(game.BlueAll[0].stat2);
-            }
-            if(!teams.includes(game.BlueAll[0].stat3)){
-                teams.push(game.BlueAll[0].stat3);
-            }
-        })
-        return teams;
-    }
-
-    function createTable(teams){
-        let tableBody = document.querySelector('#standings tbody');
-
-        tableBody.replaceChildren();
-
-        teams.forEach((team) => {
-
-        let row = document.createElement('tr');
-        let cell = document.createElement('td');
-        cell.textContent = team.Rank;
-        row.appendChild(cell);
-
-        cell = document.createElement('td');
-        cell.textContent = team.TeamNum;
-        link = document.createElement('a');
-        link.href = 'individteam.html?Team=' + team.TeamNum;
-        link.textContent = team.TeamNum;
-        cell.textContent = '';
-        cell.appendChild(link);
-        row.appendChild(cell);
-
-        cell = document.createElement('td');
-        cell.textContent = team.RPAvg;
-        row.appendChild(cell);
-
-        cell = document.createElement('td');
-        cell.textContent = team.TotscoreAvg;
-        row.appendChild(cell);
-
-        cell = document.createElement('td');
-        cell.textContent = team.AutoAvg;
-        row.appendChild(cell);
-
-        cell = document.createElement('td');
-        cell.textContent = team.TeleopAvg;
-        row.appendChild(cell);
-
-        cell = document.createElement('td');
-        cell.textContent = `${team.Wins}-${team.Losses}-${team.Ties}`;
-        row.appendChild(cell);
-
-        cell = document.createElement('td');
-        cell.textContent = team.TotRP;
-        row.appendChild(cell);
-
-        tableBody.appendChild(row);
-
-    });
-
-    }
-
-    function rank(teams){
-        teams = teams.sort((teamA, teamB) => teamB.RPAvg - teamA.RPAvg);
-        let rank = 0;
-        teams.forEach((team) => {
-          rank++;
-          team.Rank = rank;
-
-        })
-        createTable(teams);
-    }
-
-
-    function sort(field){
-        let teams = getTeams();
-        teams = teams.sort((teamA, teamB) => teamB.RPAvg - teamA.RPAvg);
-        let rank = 0;
-        teams.forEach((team) => {
-          rank++;
-          team.Rank = rank;
-
-        })
-
-        if(field == 'Rank'){
-            
-        }else if(field === 'Match'){
-          teams = teams.sort((teamA, teamB) => teamB.TotscoreAvg - teamA.TotscoreAvg);
-        }else if(field === 'Auto'){
-          teams = teams.sort((teamA, teamB) => teamB.AutoAvg - teamA.AutoAvg);
-        }else if(field === 'Teleop'){
-          teams = teams.sort((teamA, teamB) => teamB.TeleopAvg - teamA.TeleopAvg);
-        }else if(field === 'Record'){
-          teams = teams.sort((teamA, teamB) => teamB.Wins - teamA.Wins);
-        }else if(field === 'TotRP'){
-          teams = teams.sort((teamA, teamB) => teamB.TotRP - teamA.TotRP);
-        }
-
-        createTable(teams);
-    }
-
-    
-
-    
-</script>
+<script src="js/standings.js"></script>
 </html>

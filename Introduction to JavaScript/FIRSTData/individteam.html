@@ -7,307 +7,100 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
     <link rel="stylesheet" href="style.css">
-    <title>Inidividual Team Data</title> <!--Find out how to get individ team name in document title-->
+    <title>Individual Team Data</title> <!--Find out how to get individ team name in document title-->
 </head>
 <body onload="start();">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
-            <img src="Images/first-horz-rgb.png" width="112" height="28">
-          </a>
-      
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="Matchs.html">
+        <img src="Images/first-horz-rgb.png" width="112" height="28">
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="Matchs.html">
+          Matches
+        </a>
+  
+        <a class="navbar-item" href="Standings.html">
+          Standings
+        </a>
+        </div>
+
+      <div id="adminbtnouterouter" class="navbar-item adminbutton">
+        <div id="adminbtnouter">
+          <a id="adminbtninner" href="Admin.html">
+            <p class="admin">Admin</p>
           </a>
         </div>
-      
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item" href="Matchs.html">
-              Matches
-            </a>
-      
-            <a class="navbar-item" href="Standings.html">
-              Standings
-            </a>
-      
-            <a class="navbar-item" href="Admin.html">
-                Admin
-              </a>
-            </div>
+      </div>
+    </div>
+  </nav>
+  <section class="is-flex is-align-items-center is-flex-direction-column">
+    <div class="card m-2 p-3">
+        <div class="teaminfoandstats">
+          <div class="columns">
+            <div class="column is-one-third">
+          <h3 class="title is-3 m-3" id="test"></h3>
+          <p class="subtitle is-6 m-4" id="teaminfo"></p>
+          <p class="m-4" id="teamsummary"></p>
           </div>
-      
+
+        <div class="column">
+          <div class="table-container mb-0">
+            <table id="teamdata" class="table is-striped table is-bordered is-fullwidth">
+              <!--<p>Team Name: <input type="text" name="" id="NewName"> Number of Wins: <input type="text" name="" id="NewW"> Number of Losses: <input type="text" name="" id="NewL"> Number of Points: <input type="text" name="" id="NewPTS"><button id="add">Add Item</button></p>-->
+              <thead> <!--Header section of the table-->
+                  <tr>
+                    <th>Category</th>
+                    <th>Average Points</th>
+                  </tr>
+              </thead>
+              <tbody> <!--Rest of the table-->
+        
+              </tbody>
+            </table>
+            </div>
         </div>
-      </nav>
-      <div id="test"></div>
-    <table id="standings" class="table is-striped">
-        <!--<p>Team Name: <input type="text" name="" id="NewName"> Number of Wins: <input type="text" name="" id="NewW"> Number of Losses: <input type="text" name="" id="NewL"> Number of Points: <input type="text" name="" id="NewPTS"><button id="add">Add Item</button></p>-->
-        <thead> <!--Header section of the table-->
-            <tr>
-              <th onclick="sort('Qual');">Qualification Number</th>
-              <th>Red Alliance 1</th>
-              <th>Red Alliance 2</th>
-              <th>Red Alliance 3</th>
-              <th>Blue Alliance 1</th>
-              <th>Blue Alliance 2</th>
-              <th>Blue Alliance 3</th>
-              <th onclick="sort('PTSRed');">Points Red</th>
-              <th onclick="sort('PTSBlue');">Points Blue</th>
-            </tr>
-        </thead>
-        <tbody> <!--Rest of the table-->
+        </div>
+        <div class="table-container">
+        <table id="standings" class="table is-striped table is-bordered is-fullwidth">
+          <!--<p>Team Name: <input type="text" name="" id="NewName"> Number of Wins: <input type="text" name="" id="NewW"> Number of Losses: <input type="text" name="" id="NewL"> Number of Points: <input type="text" name="" id="NewPTS"><button id="add">Add Item</button></p>-->
+          <thead> <!--Header section of the table-->
+              <tr>
+                <th onclick="sort('Qual');">Qualification Number</th>
+                <th>Red Alliance 1</th>
+                <th>Red Alliance 2</th>
+                <th>Red Alliance 3</th>
+                <th>Blue Alliance 1</th>
+                <th>Blue Alliance 2</th>
+                <th>Blue Alliance 3</th>
+                <th onclick="sort('PTSRed');">Points Red</th>
+                <th onclick="sort('PTSBlue');">Points Blue</th>
+              </tr>
+          </thead>
+          <tbody> <!--Rest of the table-->
+  
+          </tbody>
+      </table>
+    </div>
+    </div>
+    
+</section>
 
-        </tbody>
-    </table>
-
-    <table id="teamdata" class="table is-striped">
-      <!--<p>Team Name: <input type="text" name="" id="NewName"> Number of Wins: <input type="text" name="" id="NewW"> Number of Losses: <input type="text" name="" id="NewL"> Number of Points: <input type="text" name="" id="NewPTS"><button id="add">Add Item</button></p>-->
-      <thead> <!--Header section of the table-->
-          <tr>
-            <th>Category</th>
-            <th>Average Points</th>
-          </tr>
-      </thead>
-      <tbody> <!--Rest of the table-->
-
-      </tbody>
-  </table>
+<footer>
+  <div class="content has-text-centered m-3 p-2">
+    <p class="title is-6"> DHARMA Initiative Competitive Robotics Dept. Copyright &copy 2022</p>
+  </div>
+</footer>
     
 </body>
-<script>
-    
-
-    function start(){
-      const dataString = localStorage.getItem('games');
-      const games = JSON.parse(dataString);
-      let params = (new URL(document.location)).searchParams;
-      let teamGames = newTeamArray(params.get('Team'), games);
-      document.querySelector('#test').textContent = "Team " + params.get('Team');
-      createGames(teamGames);
-      teamData(teamGames, params.get('Team'));
-    }
-
-    function newTeamArray(num, games){
-      let newGames = [];
-      games.forEach((game) => {
-        if(game.RedAll[0].stat1 == num || game.RedAll[0].stat2 == num || game.RedAll[0].stat3 == num){
-              newGames.push(game);
-        }
-        if(game.BlueAll[0].stat1 == num || game.BlueAll[0].stat2 == num || game.BlueAll[0].stat3 == num){
-           newGames.push(game);
-        }
-        });
-        return newGames;
-
-    }
-
-    function createGames(games){
-        let tableBody = document.querySelector('#standings tbody');
-
-        tableBody.replaceChildren();
-
-        games.forEach((game) => {
-          const row = document.createElement('tr');
-            let cell = document.createElement('td');
-            let link = document.createElement('a');
-            link.href = 'individgame.html?Qual=' + game.Qual;
-            link.textContent = game.Qual;
-            cell.textContent = '';
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.RedAll[0].stat1;
-            link.textContent = game.RedAll[0].stat1;
-            cell.textContent = '';
-            if(game.Winner == 'R'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.RedAll[0].stat2;
-            link.textContent = game.RedAll[0].stat2;
-            cell.textContent = '';
-            if(game.Winner == 'R'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.RedAll[0].stat3;
-            link.textContent = game.RedAll[0].stat3;
-            cell.textContent = '';
-            if(game.Winner == 'R'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.BlueAll[0].stat1;
-            link.textContent = game.BlueAll[0].stat1;
-            cell.textContent = '';
-            if(game.Winner == 'B'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.BlueAll[0].stat2;
-            link.textContent = game.BlueAll[0].stat2;
-            cell.textContent = '';
-            if(game.Winner == 'B'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.BlueAll[0].stat3;
-            link.textContent = game.BlueAll[0].stat3;
-            cell.textContent = '';
-            if(game.Winner == 'B'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            cell.textContent = game.RedAll[0].auto + game.RedAll[0].teleop + game.RedAll[0].fouls;;
-            if(game.Winner == 'R'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            cell.textContent = game.BlueAll[0].auto + game.BlueAll[0].teleop + game.BlueAll[0].fouls;;
-            if(game.Winner == 'B'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            row.appendChild(cell);
-
-            tableBody.appendChild(row);
-            
-        });
-
-    }
-
-    function teamData(games, num){
-        let tableBody = document.querySelector('#teamdata tbody');
-
-        tableBody.replaceChildren();
-
-        let autoavg = 0;
-        let teleopavg = 0;
-        let foulavg = 0;
-        let totscoreavg = 0;
-        let rankingavg = 0;
-        let wins = 0;
-        let ties = 0;
-
-        games.forEach((game) => {
-        if(game.RedAll[0].stat1 == num || game.RedAll[0].stat2 == num || game.RedAll[0].stat3 == num){
-            autoavg += game.RedAll[0].auto;
-            teleopavg += game.RedAll[0].teleop;
-            foulavg += game.BlueAll[0].fouls;
-            totscoreavg += game.RedAll[0].auto + game.RedAll[0].teleop + game.RedAll[0].fouls;;
-            rankingavg += game.RedAll[0].rp;
-            if(game.Winner == 'R'){
-              wins += 1;
-            }
-
-        }
-        if(game.BlueAll[0].stat1 == num || game.BlueAll[0].stat2 == num || game.BlueAll[0].stat3 == num){
-            autoavg += game.BlueAll[0].auto;
-            teleopavg += game.BlueAll[0].teleop;
-            foulavg += game.RedAll[0].fouls;
-            totscoreavg += game.BlueAll[0].auto + game.BlueAll[0].teleop + game.BlueAll[0].fouls;;
-            rankingavg += game.BlueAll[0].rp;
-            if(game.Winner == 'B'){
-              wins += 1;
-            }
-        }
-        if(game.Winner == 'T'){
-          ties += 1;
-        }
-        });
-
-        autoavg /= games.length;
-        teleopavg /= games.length;
-        foulavg /= games.length;
-        totscoreavg /= games.length;
-        let rankingtot = rankingavg;
-        rankingavg /= games.length;
-
-
-
-        let row = document.createElement('tr');
-        let cell = document.createElement('td');
-        cell.textContent = "Average Autonomous Points";
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = autoavg;
-        row.appendChild(cell);
-        tableBody.appendChild(row);
-
-        row = document.createElement('tr');
-        cell = document.createElement('td');
-        cell.textContent = "Average Teleoperated Points";
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = teleopavg;
-        row.appendChild(cell);
-        tableBody.appendChild(row);
-
-        row = document.createElement('tr');
-        cell = document.createElement('td');
-        cell.textContent = "Average Foul Point Deductions";
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = foulavg;
-        row.appendChild(cell);
-        tableBody.appendChild(row);
-
-        row = document.createElement('tr');
-        cell = document.createElement('td');
-        cell.textContent = "Average Match Score";
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = totscoreavg;
-        row.appendChild(cell);
-        tableBody.appendChild(row);
-
-        row = document.createElement('tr');
-        cell = document.createElement('td');
-        cell.textContent = "Average Ranking Points";
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = rankingavg;
-        row.appendChild(cell);
-        tableBody.appendChild(row);
-
-        row = document.createElement('tr');
-        cell = document.createElement('td');
-        cell.textContent = "Record: W-L-T";
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = `${wins}-${games.length-wins-ties}-${ties}`;
-        row.appendChild(cell);
-        tableBody.appendChild(row);
-
-    }
-
-</script>
+<script src="js/individteam.js"></script>
 </html>

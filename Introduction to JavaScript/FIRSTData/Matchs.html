@@ -9,39 +9,53 @@
     <link rel="stylesheet" href="style.css">
     <title>Matches</title>
 </head>
-<body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
-            <img src="Images/first-horz-rgb.png" width="112" height="28">
-          </a>
-      
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
+<body onload="paginationIndex1();">
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="Matchs.html">
+        <img src="Images/first-horz-rgb.png" width="112" height="28">
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="Matchs.html">
+          Matches
+        </a>
+  
+        <a class="navbar-item" href="Standings.html">
+          Standings
+        </a>
+        </div>
+
+      <div id="adminbtnouterouter" class="navbar-item adminbutton">
+        <div id="adminbtnouter">
+          <a id="adminbtninner" href="Admin.html">
+            <p class="admin">Admin</p>
           </a>
         </div>
-      
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a href="Matchs.html" class="navbar-item current">
-              Matches
-            </a>
-      
-            <a class="navbar-item" href="Standings.html">
-              Standings
-            </a>
-      
-            <a href="Admin.html" class="navbar-item">
-                Admin
-              </a>
-            </div>
-          </div>
-      
-        </div>
-      </nav>
-    <table id="standings" class="table is-striped">
+      </div>
+    </div>
+  </nav>
+  <section class="is-flex is-align-items-center is-flex-direction-column">
+    <div class="card m-2 p-3">
+      <div class="is-flex is-flex-direction-row is-align-items-center is-justify-content-space-between">
+        <div class="is-flex is-flex-direction-row is-align-items-center">
+        <label class="label m-1 my-2">Filter by Team:</label>
+        <input class="input m-1 mb-2" id="teamnum" type="text" placeholder="Team Number">
+        <button class="button is-light m-2 mb-2" id="submit">Submit</button>
+      </div>
+        <button class="button is-light mx-1 mb-2" id="allteam">All Teams</button>
+      </div>
+
+<div class="table-container">
+    <table id="standings" class="table is-striped table is-bordered is-fullwidth">
         <!--<p>Team Name: <input type="text" name="" id="NewName"> Number of Wins: <input type="text" name="" id="NewW"> Number of Losses: <input type="text" name="" id="NewL"> Number of Points: <input type="text" name="" id="NewPTS"><button id="add">Add Item</button></p>-->
         <thead> <!--Header section of the table-->
             <tr>
@@ -60,136 +74,31 @@
 
         </tbody>
     </table>
+  </div>
+ 
+  
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+      <a class="pagination-previous button mb-3 mx-1" id="previous">Previous</a>
+      <a class="pagination-next button mb-3 mx-1" id="next">Next page</a>
+      <ul class="pagination-list mb-2">
+        <li><a class="pagination-link is-current button" id="button1">1</a></li>
+        <li><a class="pagination-link button" id="button2">2</a></li>
+        <li><a class="pagination-link button" id="button3">3</a></li>
+      </ul>
+    </nav>
+    <!--aria-current="page"-->
+  </div>
+  </section>
+  
+
+  <footer>
+    <div class="content has-text-centered m-3 p-2">
+      <p class="title is-6"> DHARMA Initiative Competitive Robotics Dept. Copyright &copy 2022</p>
+    </div>
+  </footer>
+    
 </body>
 
-<script>
-    function getGames() {
-      return JSON.parse(localStorage['games']);
-      
-    }
-
-    createTable(getGames());
-
-    function createTable(games){
-        let tableBody = document.querySelector('#standings tbody');
-
-        tableBody.replaceChildren();
-
-        games.forEach((game) => {
-            const row = document.createElement('tr');
-            let cell = document.createElement('td');
-            let link = document.createElement('a');
-            link.href = 'individgame.html?Qual=' + game.Qual;
-            link.textContent = game.Qual;
-            cell.textContent = '';
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            cell.textContent = game.RedAll[0].stat1;
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.RedAll[0].stat1;
-            link.textContent = game.RedAll[0].stat1;
-            cell.textContent = '';
-            if(game.Winner == 'R'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            cell.textContent = game.RedAll[0].stat2;
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.RedAll[0].stat2;
-            link.textContent = game.RedAll[0].stat2;
-            cell.textContent = '';
-            if(game.Winner == 'R'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            cell.textContent = game.RedAll[0].stat3;
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.RedAll[0].stat3;
-            link.textContent = game.RedAll[0].stat3;
-            cell.textContent = '';
-            if(game.Winner == 'R'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            cell.textContent = game.BlueAll[0].stat1;
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.BlueAll[0].stat1;
-            link.textContent = game.BlueAll[0].stat1;
-            cell.textContent = '';
-            if(game.Winner == 'B'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            cell.textContent = game.BlueAll[0].stat2;
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.BlueAll[0].stat2;
-            link.textContent = game.BlueAll[0].stat2;
-            cell.textContent = '';
-            if(game.Winner == 'B'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            cell.textContent = game.BlueAll[0].stat3;
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.BlueAll[0].stat3;
-            link.textContent = game.BlueAll[0].stat3;
-            cell.textContent = '';
-            if(game.Winner == 'B'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            cell.textContent = game.RedAll[0].auto + game.RedAll[0].teleop + game.RedAll[0].fouls;;
-            if(game.Winner == 'R'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            cell.textContent = game.BlueAll[0].auto + game.BlueAll[0].teleop + game.BlueAll[0].fouls;
-            if(game.Winner == 'B'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            row.appendChild(cell);
-
-            tableBody.appendChild(row);
-            
-        });
-
-        
-    }
-
-    function sort(field){
-        let games = getGames();
-        if(field == 'Qual'){
-            games = games.sort((gameA, gameB) => gameA.Qual - gameB.Qual);
-        }else if(field === 'PTSRed'){
-            games = games.sort((gameA, gameB) => gameB.RedAll[0].auto + gameB.RedAll[0].teleop + gameB.RedAll[0].fouls - (gameA.RedAll[0].auto + gameA.RedAll[0].teleop + gameA.RedAll[0].fouls));
-        }else if(field === 'PTSBlue'){
-            games = games.sort((gameA, gameB) => gameB.BlueAll[0].auto + gameB.BlueAll[0].teleop + gameB.BlueAll[0].fouls - (gameA.BlueAll[0].auto + gameA.BlueAll[0].teleop + gameA.BlueAll[0].fouls));
-        }
-
-        createTable(games);
-    }
-</script>
+<script src="js/match.js"></script>
 
 </html>
