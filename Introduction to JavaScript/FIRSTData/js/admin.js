@@ -351,7 +351,10 @@ function checkErrors(){
                 if(parseInt(document.getElementById("RStat1").value) < 0 || parseInt(document.getElementById("RStat2").value) < 0 || parseInt(document.getElementById("RStat3").value) < 0 || parseInt(document.getElementById("BStat1").value) < 0 || parseInt(document.getElementById("BStat2").value) < 0 || parseInt(document.getElementById("BStat3").value) < 0 || parseInt(document.getElementById("RAuto").value) < 0 || parseInt(document.getElementById("RTeleop").value) < 0 || parseInt(document.getElementById("RBFouls").value) < 0 || parseInt(document.getElementById("BAuto").value) < 0 || parseInt(document.getElementById("BTeleop").value) < 0 || parseInt(document.getElementById("BRFouls").value) < 0 || parseInt(document.getElementById("RRP").value) < 0 || parseInt(document.getElementById("BRP").value) < 0 || parseInt(document.getElementById("Qual").value) < 0){
                   errorButton('No values can be negative! Please enter another value.');
                 }else{
-                  let erroray = createCheckErroray();
+                  if(document.querySelector('#ROutcome').value == 'Tie' && document.querySelector('#BOutcome').value == 'Tie' && (parseInt(document.getElementById("RAuto").value)+parseInt(document.getElementById("RTeleop").value)+parseInt(document.getElementById("RBFouls").value)) != (parseInt(document.getElementById("BAuto").value)+parseInt(document.getElementById("BTeleop").value)+parseInt(document.getElementById("BRFouls").value))){
+                    errorButton('Tie matches have the same total score for both the red and blue alliance. Total score is a combination of the autonomous, teleoperated, and fouls from the other alliance point values. Enter other autonomous, teleoperated, o fouls from the other alliance point values.');
+                  }else{
+                    let erroray = createCheckErroray();
                   let counter = 0;
                   erroray.forEach((entry1) => {
                     let value = entry1;
@@ -374,6 +377,7 @@ function checkErrors(){
                     if(cleared == games.length){
                       addData();
                     }
+                  }
                   } 
                 }
             }
@@ -387,6 +391,7 @@ function checkErrors(){
 
 //adds the game the user inputted to the games array and local storage
 function addData(){
+  errorButtonReverse();
    let game = {};
    game['Qual'] = parseInt(document.getElementById("Qual").value);
    if(document.querySelector('#ROutcome').value == 'Winner'){
@@ -423,7 +428,7 @@ function addData(){
    //Creates Hamburger Menu
    document.addEventListener('DOMContentLoaded', () => {
 
-    // Get all "navbar-burger" elements
+    // Get all "navbar-burger" 
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
   
     // Add a click event on each of them

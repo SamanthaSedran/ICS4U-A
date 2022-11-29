@@ -131,7 +131,7 @@ function start(){
     let winner = '';
     let winnerscore = 0;
 
-    if(game.Winner != 'Tie'){
+    if(game.Winner != 'T'){
       if(game.Winner=='R'){
         winner = 'red';
         winnerscore = game.RedAll[0].auto + game.RedAll[0].teleop + game.RedAll[0].fouls;

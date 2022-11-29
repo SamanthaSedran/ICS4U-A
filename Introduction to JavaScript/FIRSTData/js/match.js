@@ -147,7 +147,7 @@ function errorButtonReverse(){
         if(parseInt(document.getElementById("teamnum").value) < 0){
             errorButton('Team numbers cannot be negative! Please enter a team number.');
         }else{
-            if(newTeamArray(parseInt(document.getElementById("teamnum").value), games) == ''){
+            if(newTeamArray(parseInt(document.getElementById("teamnum").value), JSON.parse(localStorage['games'])) == ''){
                 errorButton('The number you have entered is not a team competing at this competition. Please enter a team.');
             }else{
                 teamFilter();
@@ -166,6 +166,7 @@ function errorButtonReverse(){
     paginationArea.replaceChildren();
     document.getElementById("previous").style.display = 'none';
     document.getElementById("next").style.display = 'none';
+    errorButtonReverse();
 
   }
 
