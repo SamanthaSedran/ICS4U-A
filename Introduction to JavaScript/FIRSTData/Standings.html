@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Standings</title> 
 </head>
 <body onload="start();">
@@ -34,12 +34,10 @@
         </a>
         </div>
 
-      <div id="adminbtnouterouter" class="navbar-item adminbutton">
-        <div id="adminbtnouter">
-          <a id="adminbtninner" href="Admin.html">
+        <div id="adminbtnouterouter" class="navbar-item adminbutton">
+          <a id="adminbtninner" class="button is-light" href="Admin.html">
             <p class="admin">Admin</p>
           </a>
-        </div>
       </div>
     </div>
   </nav>
@@ -68,9 +66,8 @@
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
       <a class="pagination-previous button mb-3 mx-1" id="previous">Previous</a>
       <a class="pagination-next button mb-3 mx-1" id="next">Next page</a>
-      <ul class="pagination-list mb-2">
-        <li><a class="pagination-link is-current button" id="button1">1</a></li>
-        <li><a class="pagination-link button" id="button2">2</a></li>
+      <ul class="pagination-list mb-2" id="pagination">
+       
       </ul>
     </nav>
   </div>

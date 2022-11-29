@@ -6,255 +6,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Match List</title> <!--Find out how to get individ team name in document title-->
 </head>
 <body onload="start();">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
-            <img src="Images/first-horz-rgb.png" width="112" height="28">
-          </a>
-      
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="Matchs.html">
+        <img src="Images/first-horz-rgb.png" width="112" height="28">
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="Matchs.html">
+          Matches
+        </a>
+  
+        <a class="navbar-item" href="Standings.html">
+          Standings
+        </a>
         </div>
-      
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item" href="Matchs.html">
-              Matches
-            </a>
-      
-            <a class="navbar-item" href="Standings.html">
-              Standings
-            </a>
-      
-            <a class="navbar-item" href="Admin.html">
-                Admin
-              </a>
-            </div>
+
+        <div id="adminbtnouterouter" class="navbar-item">
+          <a id="adminbtninner" class="button is-light" href="Admin.html">
+            <p class="admin">Admin</p>
+          </a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="is-flex is-align-items-center is-flex-direction-column">
+    <div class="card m-2 p-3">
+      <div>
+          <div class="columns gameinfoandstats">
+            <div class="column is-one-third" id="gameinfobreakdown">
+              <h3 class="title is-3 m-3" id="test"></h3>
+              <p class="subtitle is-6 m-4" id="gameinfo"></p>
+              <p class="m-4" id="gamesummary"></p>
           </div>
+
+        <div class="column">
+          <div class="table-container mb-0">
+            <table id="details" class="table is-striped table is-bordered is-fullwidth">
+              <thead> <!--Header section of the table-->
+                  <tr>
+                      <th>Red Alliance</th>
+                      <th>Category</th>
+                      <th>Blue Alliance</th>
+                  </tr>
+              </thead>
+              <tbody> <!--Rest of the table-->
       
+              </tbody>
+          </table>
         </div>
-      </nav>
-      <div id="test"></div>
-    <table id="standings" class="table is-striped">
-        <thead> <!--Header section of the table-->
-            <tr>
-                <th>Qualification Number</th>
-                <th>Red Alliance 1</th>
-                <th>Red Alliance 2</th>
-                <th>Red Alliance 3</th>
-                <th>Blue Alliance 1</th>
-                <th>Blue Alliance 2</th>
-                <th>Blue Alliance 3</th>
-                <th>Points Red</th>
-                <th>Points Red</th>
-            </tr>
-        </thead>
-        <tbody> <!--Rest of the table-->
+        </div>
+        </div>
+        <div class="table-container">
+          <table id="standings" class="table is-striped table is-bordered is-fullwidth">
+            <thead> <!--Header section of the table-->
+                <tr>
+                    <th>Qualification Number</th>
+                    <th>Red Alliance 1</th>
+                    <th>Red Alliance 2</th>
+                    <th>Red Alliance 3</th>
+                    <th>Blue Alliance 1</th>
+                    <th>Blue Alliance 2</th>
+                    <th>Blue Alliance 3</th>
+                    <th>Points Red</th>
+                    <th>Points Red</th>
+                </tr>
+            </thead>
+            <tbody> <!--Rest of the table-->
+    
+            </tbody>
+        </table>
+    </div>
+    </div>
+    
+</section>
 
-        </tbody>
-    </table>
-
-    <table id="details" class="table is-striped">
-        <thead> <!--Header section of the table-->
-            <tr>
-                <th>Red Alliance</th>
-                <th>Category</th>
-                <th>Blue Alliance</th>
-            </tr>
-        </thead>
-        <tbody> <!--Rest of the table-->
-
-        </tbody>
-    </table>
+  <footer>
+    <div class="content has-text-centered m-3 p-2">
+      <p class="title is-6"> DHARMA Initiative Competitive Robotics Dept. Copyright &copy 2022</p>
+    </div>
+  </footer>
     
 </body>
-<script>
-    function start(){
-      const dataString = localStorage.getItem('games');
-      const games = JSON.parse(dataString);
-      let params = (new URL(document.location)).searchParams;
-
-      const game = games.filter(game => game.Qual == params.get('Qual'));
-
-      document.querySelector('#test').textContent = 'Qualification Match ' + games[params.get('Qual')-1].Qual;
-      console.log("worked!");
-      createGame(games[params.get('Qual')-1]); //fix two going to one
-      createGameDetails(games[params.get('Qual')-1]);
-
-    }
-
-    function createGame(game){
-        let tableBody = document.querySelector('#standings tbody');
-
-        tableBody.replaceChildren();
-
-        const row = document.createElement('tr');
-            let cell = document.createElement('td');
-            let link = document.createElement('a');
-            link.href = 'individgame.html?Qual=' + game.Qual;
-            link.textContent = game.Qual;
-            cell.textContent = '';
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.RedAll[0].stat1;
-            link.textContent = game.RedAll[0].stat1;
-            cell.textContent = '';
-            if(game.Winner == 'R'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.RedAll[0].stat2;
-            link.textContent = game.RedAll[0].stat2;
-            cell.textContent = '';
-            if(game.Winner == 'R'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.RedAll[0].stat3;
-            link.textContent = game.RedAll[0].stat3;
-            cell.textContent = '';
-            if(game.Winner == 'R'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.BlueAll[0].stat1;
-            link.textContent = game.BlueAll[0].stat1;
-            cell.textContent = '';
-            if(game.Winner == 'B'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.BlueAll[0].stat2;
-            link.textContent = game.BlueAll[0].stat2;
-            cell.textContent = '';
-            if(game.Winner == 'B'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            link = document.createElement('a');
-            link.href = 'individteam.html?Team=' + game.BlueAll[0].stat3;
-            link.textContent = game.BlueAll[0].stat3;
-            cell.textContent = '';
-            if(game.Winner == 'B'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            cell.appendChild(link);
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            cell.textContent = game.RedAll[0].auto + game.RedAll[0].teleop + game.RedAll[0].fouls;
-            if(game.Winner == 'R'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            row.appendChild(cell);
-
-            cell = document.createElement('td');
-            cell.textContent = game.BlueAll[0].auto + game.BlueAll[0].teleop + game.BlueAll[0].fouls;
-            if(game.Winner == 'B'){
-              cell.classList.add('has-text-weight-bold');
-            }
-            row.appendChild(cell);
-
-            tableBody.appendChild(row);
-        
-    }
-
-    function createGameDetails(game){
-        let tableBody = document.querySelector('#details tbody');
-
-        tableBody.replaceChildren();
-
-        let row = document.createElement('tr');
-        let cell = document.createElement('td');
-        cell.textContent = game.RedAll[0].auto;
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = "Autonomous Points";
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = game.BlueAll[0].auto;
-        row.appendChild(cell);
-        tableBody.appendChild(row);
-
-        row = document.createElement('tr');
-        cell = document.createElement('td');
-        cell.textContent = game.RedAll[0].teleop;
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = "Teleoperated Points";
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = game.BlueAll[0].teleop;
-        row.appendChild(cell);
-        tableBody.appendChild(row);
-
-        row = document.createElement('tr');
-        cell = document.createElement('td');
-        cell.textContent = game.RedAll[0].fouls;
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = "Foul Points";
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = game.BlueAll[0].fouls;
-        row.appendChild(cell);
-        tableBody.appendChild(row);
-
-        row = document.createElement('tr');
-        cell = document.createElement('td');
-        cell.textContent = game.RedAll[0].auto + game.RedAll[0].teleop + game.RedAll[0].fouls;
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = "Total Score";
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = game.BlueAll[0].auto + game.BlueAll[0].teleop + game.BlueAll[0].fouls;;
-        row.appendChild(cell);
-        tableBody.appendChild(row);
-
-        row = document.createElement('tr');
-        cell = document.createElement('td');
-        cell.textContent = game.RedAll[0].rp;
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = "Ranking Points";
-        row.appendChild(cell);
-        cell = document.createElement('td');
-        cell.textContent = game.BlueAll[0].rp;
-        row.appendChild(cell);
-        tableBody.appendChild(row);
-        
-    }
-
-    
-</script>
+<script src="js/individgame.js"></script>
 </html>

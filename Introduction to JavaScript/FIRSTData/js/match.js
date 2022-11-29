@@ -1,56 +1,110 @@
+let games = JSON.parse(localStorage['games']);
+const matchesPerPage = 10;
+let currPage = 1;
+
+document.getElementById("previous").addEventListener("click", btnPrevious);
+document.getElementById("next").addEventListener("click", btnNext);
 document.getElementById("submit").addEventListener("click", checkError);
-document.getElementById("allteam").addEventListener("click", paginationIndex1);
-document.getElementById("button1").addEventListener("click", paginationIndex1);
-document.getElementById("button2").addEventListener("click", paginationIndex2);
-document.getElementById("button3").addEventListener("click", paginationIndex3);
+document.getElementById("allteam").addEventListener("click", startclear);
 
+//creates the pagination buttons
+function createPagination(){
+    const pageCount = Math.ceil(games.length / matchesPerPage);
+    let pagination = document.querySelector('#pagination');
 
-  function paginationIndex1(){
-    games = JSON.parse(localStorage['games']);
-    const pageCount = Math.ceil(games.length / 10);
+    document.getElementById("previous").style.display = 'inline';
+    document.getElementById("next").style.display = 'inline';
 
-    let pagearray = [];
-    let pagebefore = 0;
+    for(let i=0; i<pageCount; i++){
+      let pageButton = document.createElement('li');
+      pageButton.textContent = i+1;
+      pageButton.classList.toggle('pagination-link');
+      pageButton.onclick = () => {
+        showPage(i+1);
+        currPage = i+1;
+        currButtons();
+        disableButtons();
+      }
+      if(currPage == i+1){
+        pageButton.classList.add('is-current');
+      }else{
+        pageButton.classList.remove('is-current');
+      }
+      pagination.appendChild(pageButton);
+      disableButtons();
 
-    for(let i=0; i<10; i++){
-      pagearray.push(games[pagebefore+i]);
     }
+}
 
-    adminButton();
+//Sets up the current styling on the pagination buttons
+function currButtons(){
+  let paginationArea = document.querySelector('#pagination');
+  paginationArea.replaceChildren();
+  createPagination();
+}
 
-    createTable(pagearray);
+//Changes styling of the buttons if they are disabled
+function disableButtons(){
+  const pageCount = Math.ceil(games.length / matchesPerPage);
+  const previous = document.getElementById("previous");
+  const next = document.getElementById("next");
+
+  if(currPage == 1){
+    previous.classList.add('is-light');
+    next.classList.remove('is-light');
+    previous.disabled = true;
+  }else if(currPage == pageCount){
+    next.classList.add('is-light');
+    previous.classList.remove('is-light');
+    next.disabled = true;
+  }else{
+    previous.classList.remove('is-light');
+    next.classList.remove('is-light');
+  }
+}
+
+//creates a table of elements on a particular page
+function showPage(page){
+  createTable(games.slice((page-1)*matchesPerPage, page*matchesPerPage));
+}
+
+// Functionality for previous button
+function btnPrevious(){
+  if(currPage > 1){
+    currPage--;
+    showPage(currPage);
+    disableButtons();
+    currButtons();
+  }
+}
+
+// Functionality for next button
+function btnNext(){
+  if(currPage < Math.ceil(games.length / matchesPerPage)){
+    currPage++;
+    showPage(currPage);
+    disableButtons();
+    currButtons();
+  }
+}
+
+// Resets to the inital condition of the page and resets games to its initial value
+  function startclear(){
+    games = JSON.parse(localStorage['games']);
+    currPage = 1;
+    showPage(currPage);
+    currButtons();
   }
 
-  function paginationIndex2(){
-    games = JSON.parse(localStorage['games']);
-    const pageCount = Math.ceil(games.length / 10);
-
-    let pagearray = [];
-    let pagebefore = 10;
-
-    for(let i=0; i<10; i++){
-      pagearray.push(games[pagebefore+i]);
-    }
-
-    createTable(pagearray);
+ //onload function
+  function start(){
+    createPagination();
+    showPage(currPage);
   }
 
-  function paginationIndex3(){
-    games = JSON.parse(localStorage['games']);
-    const pageCount = Math.ceil(games.length / 10);
 
-    let pagearray = [];
-    let pagebefore = 10;
-
-    for(let i=0; i<10; i++){
-      pagearray.push(games[pagebefore+i]);
-    }
-
-    createTable(pagearray);
-  }
-
+//Checks the team number the user entered in for errors
   function checkError(){
-    games = JSON.parse(localStorage['games']);
     if(isNaN(document.getElementById("teamnum").value)){
         alert('Not a number! Please enter a team number.');
     }else{
@@ -66,9 +120,17 @@ document.getElementById("button3").addEventListener("click", paginationIndex3);
   }
 }
 
+//Creates a table of games with only a specific team
   function teamFilter(){
     games = JSON.parse(localStorage['games']);
-    createTable(newTeamArray(parseInt(document.getElementById("teamnum").value), games));
+    let gamesNew = newTeamArray(parseInt(document.getElementById("teamnum").value), games);
+    games = gamesNew;
+    createTable(games);
+    let paginationArea = document.querySelector('#pagination');
+    paginationArea.replaceChildren();
+    document.getElementById("previous").style.display = 'none';
+    document.getElementById("next").style.display = 'none';
+
   }
 
   //returns an array that contains games only with team num
@@ -82,12 +144,14 @@ document.getElementById("button3").addEventListener("click", paginationIndex3);
          newGames.push(game);
       }
       });
-      return newGames;
+
+      games = newGames;
+      return games;
 
   }
 
   //Creates an array of all team numbers in no particular order
-  function createTeamsList(games){
+  /*function createTeamsList(){
     let teams = [];
     games.forEach((game) => {
         if(!teams.includes(game.RedAll[0].stat1)){
@@ -110,9 +174,9 @@ document.getElementById("button3").addEventListener("click", paginationIndex3);
         }
     })
     return teams;
-}
+}*/
 
-
+//Creates a table of games from the array games
   function createTable(games){
       let tableBody = document.querySelector('#standings tbody');
 
@@ -229,8 +293,8 @@ document.getElementById("button3").addEventListener("click", paginationIndex3);
       
   }
 
+  //Sorts data in a column of the table
   function sort(field){
-      let games = JSON.parse(localStorage['games']);
       if(field == 'Qual'){
           games = games.sort((gameA, gameB) => gameA.Qual - gameB.Qual);
       }else if(field === 'PTSRed'){
@@ -239,9 +303,16 @@ document.getElementById("button3").addEventListener("click", paginationIndex3);
           games = games.sort((gameA, gameB) => gameB.BlueAll[0].auto + gameB.BlueAll[0].teleop + gameB.BlueAll[0].fouls - (gameA.BlueAll[0].auto + gameA.BlueAll[0].teleop + gameA.BlueAll[0].fouls));
       }
 
-      createTable(games);
+      let paginationArea = document.querySelector('#pagination');
+      paginationArea.replaceChildren();
+      currPage = 1;
+      if(games.length > matchesPerPage){
+        createPagination();
+      }
+      showPage(currPage);
   }
 
+  //Creates Hamburger Menu
   document.addEventListener('DOMContentLoaded', () => {
 
     // Get all "navbar-burger" elements
@@ -259,19 +330,15 @@ document.getElementById("button3").addEventListener("click", paginationIndex3);
         el.classList.toggle('is-active');
         $target.classList.toggle('is-active');
         adminButton();
-        let adminbtnoo = document.getElementById("adminbtnouterouter");
-        adminbtnoo.classList.toggle('adminbutton');
   
       });
     });
   });
 
+  //Adds and takes away styling to admin button
   function adminButton() {
-    let adminbtno = document.getElementById("adminbtnouter");
-    adminbtno.classList.toggle("buttons");
-  
-    let adminbtni = document.getElementById("adminbtnouter");
+    let adminbtni = document.getElementById("adminbtninner");
     adminbtni.classList.toggle("button");
     adminbtni.classList.toggle("is-light");
-  
+    adminbtni.classList.toggle("admin");
   }

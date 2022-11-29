@@ -2,31 +2,21 @@ document.getElementById("addgame").addEventListener("click", checkErrors);
 let games = [];
 
 
-
+//Gets the games when loading the site on a browser without games in local storage
 function getGames() {
   games = JSON.parse(localStorage['games']);
-  adminButton();
 }
 
+//Removes a game from games in local storage - used for testing purposes
 function removeGame(num){
  games = JSON.parse(localStorage['games']);
  games.splice(num, 1);
  localStorage.setItem('games', JSON.stringify(games));
 
-
-}
-
-function adminButton() {
-  let adminbtno = document.getElementById("adminbtnouter");
-  adminbtno.classList.toggle("buttons");
-
-  let adminbtni = document.getElementById("adminbtnouter");
-  adminbtni.classList.toggle("button");
-  adminbtni.classList.toggle("is-light");
-
 }
 
 
+//Creates the orginal games array then adds it to local storage
 function initGames(){
 let game = {};
 game['Qual'] = 1;
@@ -286,6 +276,7 @@ localStorage.setItem('games', JSON.stringify(games));
 
 }
 
+//Creates an array of elements that need to be checked. An Errorray - an array filled with possible errors. I was very proud that I came up with this :)
 function createCheckErroray(){
   let checkarray = [];
   checkarray.push(document.getElementById("RStat1").value);
@@ -299,6 +290,7 @@ function createCheckErroray(){
 
 }
 
+//Checks the data the user inputted for errors
 function checkErrors(){
   let cleared = 0;
   if(document.getElementById("RStat1").value == '' || document.getElementById("RStat2").value == '' || document.getElementById("RStat3").value == '' || document.getElementById("BStat1").value == '' || document.getElementById("BStat2").value == '' || document.getElementById("BStat3").value == '' || document.getElementById("RAuto").value == '' || document.getElementById("RTeleop").value == '' || document.getElementById("RBFouls").value == '' || document.getElementById("RRP").value == '' || document.getElementById("BAuto").value == '' || document.getElementById("BTeleop").value == '' || document.getElementById("BRFouls").value == '' || document.getElementById("BRP").value == '' || document.querySelector('#ROutcome').value == 'Outcome' || document.querySelector('#BOutcome').value == 'Outcome'){
@@ -357,6 +349,7 @@ function checkErrors(){
 
 }
 
+//adds the game the user inputted to the games array and local storage
 function addData(){
    let game = {};
    game['Qual'] = parseInt(document.getElementById("Qual").value);
@@ -391,6 +384,7 @@ function addData(){
    localStorage.setItem('games', JSON.stringify(games));
    }
 
+   //Creates Hamburger Menu
    document.addEventListener('DOMContentLoaded', () => {
 
     // Get all "navbar-burger" elements
@@ -414,4 +408,12 @@ function addData(){
       });
     });
   });
+
+  //Adds and takes away styling to admin button
+  function adminButton() {
+    let adminbtni = document.getElementById("adminbtninner");
+    adminbtni.classList.toggle("button");
+    adminbtni.classList.toggle("is-light");
+    adminbtni.classList.toggle("admin");
+  }
 
