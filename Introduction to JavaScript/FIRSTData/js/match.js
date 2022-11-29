@@ -6,6 +6,7 @@ document.getElementById("previous").addEventListener("click", btnPrevious);
 document.getElementById("next").addEventListener("click", btnNext);
 document.getElementById("submit").addEventListener("click", checkError);
 document.getElementById("allteam").addEventListener("click", startclear);
+document.getElementById("delete").addEventListener("click", errorButtonReverse);
 
 //creates the pagination buttons
 function createPagination(){
@@ -43,7 +44,7 @@ function currButtons(){
   createPagination();
 }
 
-//Changes styling of the buttons if they are disabled
+//Changes styling of the buttons if the user cannot use them
 function disableButtons(){
   const pageCount = Math.ceil(games.length / matchesPerPage);
   const previous = document.getElementById("previous");
@@ -102,17 +103,52 @@ function btnNext(){
     showPage(currPage);
   }
 
+//Adds styling to error message and makes it visible
+function errorButton(message){
+  let errormsgouter = document.querySelector('#errormsgouter');
+  errormsgouter.classList.add('message');
+  errormsgouter.classList.add('is-danger');
+  errormsgouter.classList.add('m-3');
+
+  let errormsg = document.querySelector('#errormsg');
+  errormsg.classList.add('message-body');
+
+  let deletebtn = document.querySelector('#delete');
+  deletebtn.classList.remove('hidden');
+
+  document.querySelector('#errormsg').textContent = message;
+
+}
+
+//takes aways styling to error message and makes it inivisible
+function errorButtonReverse(){
+  let errormsgouter = document.querySelector('#errormsgouter');
+  errormsgouter.classList.remove('message');
+  errormsgouter.classList.remove('is-danger');
+  errormsgouter.classList.remove('m-3');
+
+  let errormsg = document.querySelector('#errormsg');
+  errormsg.classList.remove('message-body');
+
+  let deletebtn = document.querySelector('#delete');
+  deletebtn.classList.add('hidden');
+
+  document.querySelector('#errormsg').textContent = '';
+
+}
+
+
 
 //Checks the team number the user entered in for errors
   function checkError(){
     if(isNaN(document.getElementById("teamnum").value)){
-        alert('Not a number! Please enter a team number.');
+        errorButton('Not a number! Please enter a team number.');
     }else{
         if(parseInt(document.getElementById("teamnum").value) < 0){
-            alert('Team numbers cannot be negative! Please enter a team number.');
+            errorButton('Team numbers cannot be negative! Please enter a team number.');
         }else{
             if(newTeamArray(parseInt(document.getElementById("teamnum").value), games) == ''){
-                alert('The number you have entered is not a team competing at this competition. Please enter a team.');
+                errorButton('The number you have entered is not a team competing at this competition. Please enter a team.');
             }else{
                 teamFilter();
             }

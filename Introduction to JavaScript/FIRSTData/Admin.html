@@ -46,7 +46,11 @@
   </nav>
 
   <section class="is-flex is-align-items-center is-flex-direction-column">
-   <div class="card m-2 py-4 px-5 is-flex is-flex-direction-row is-justify-content-space-between">
+    <article id="errormsgouter" class="is-flex is-align-items-center is-flex-direction-row">
+      <div id="errormsg"></div>
+      <button class="delete mr-5 hidden" id="delete"></button>
+    </article>
+   <div class="card m-2 mt-1 py-4 px-5 is-flex is-flex-direction-row is-justify-content-space-between">
      <div class="is-flex is-flex-direction-row is-align-items-center">
        <label class="label m-1">Qualification Match Number:</label>
        <input class="input qual m-1" id="Qual" type="text" placeholder="Qualification">
@@ -108,7 +112,7 @@
        <label class="label m-1">Point Data</label>
        <input class="input m-1" type="text" id="BAuto" placeholder="Total Auto">
        <input class="input m-1" type="text" id="BTeleop" placeholder="Total Teleop">
-       <input class="input m-1" type="text" id="BRFouls" placeholder="Fouls by Blue Alliance">
+       <input class="input m-1" type="text" id="BRFouls" placeholder="Fouls by Red Alliance">
        
     </div>
 

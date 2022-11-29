@@ -1,4 +1,5 @@
 document.getElementById("addgame").addEventListener("click", checkErrors);
+document.getElementById("delete").addEventListener("click", errorButtonReverse);
 let games = [];
 
 
@@ -276,7 +277,8 @@ localStorage.setItem('games', JSON.stringify(games));
 
 }
 
-//Creates an array of elements that need to be checked. An Errorray - an array filled with possible errors. I was very proud that I came up with this :)
+//Creates an array of elements that need to be checked. 
+//An Errorray - an array filled with possible errors. I was very proud that I came up with this :)
 function createCheckErroray(){
   let checkarray = [];
   checkarray.push(document.getElementById("RStat1").value);
@@ -290,30 +292,64 @@ function createCheckErroray(){
 
 }
 
+//Adds styling to error message and makes it visible
+function errorButton(message){
+    let errormsgouter = document.querySelector('#errormsgouter');
+    errormsgouter.classList.add('message');
+    errormsgouter.classList.add('is-danger');
+    errormsgouter.classList.add('m-3');
+
+    let errormsg = document.querySelector('#errormsg');
+    errormsg.classList.add('message-body');
+
+    let deletebtn = document.querySelector('#delete');
+    deletebtn.classList.remove('hidden');
+
+    document.querySelector('#errormsg').textContent = message;
+
+}
+
+//takes aways styling to error message and makes it inivisible
+function errorButtonReverse(){
+  let errormsgouter = document.querySelector('#errormsgouter');
+  errormsgouter.classList.remove('message');
+  errormsgouter.classList.remove('is-danger');
+  errormsgouter.classList.remove('m-3');
+
+  let errormsg = document.querySelector('#errormsg');
+  errormsg.classList.remove('message-body');
+
+  let deletebtn = document.querySelector('#delete');
+  deletebtn.classList.add('hidden');
+
+  document.querySelector('#errormsg').textContent = '';
+
+}
+
 //Checks the data the user inputted for errors
 function checkErrors(){
   let cleared = 0;
   if(document.getElementById("RStat1").value == '' || document.getElementById("RStat2").value == '' || document.getElementById("RStat3").value == '' || document.getElementById("BStat1").value == '' || document.getElementById("BStat2").value == '' || document.getElementById("BStat3").value == '' || document.getElementById("RAuto").value == '' || document.getElementById("RTeleop").value == '' || document.getElementById("RBFouls").value == '' || document.getElementById("RRP").value == '' || document.getElementById("BAuto").value == '' || document.getElementById("BTeleop").value == '' || document.getElementById("BRFouls").value == '' || document.getElementById("BRP").value == '' || document.querySelector('#ROutcome').value == 'Outcome' || document.querySelector('#BOutcome').value == 'Outcome'){
-    alert('Missing a field. Please enter another value.');
+    errorButton('Missing a field. Please enter another value.');
 }else{
   if(isNaN(document.getElementById("Qual").value)){
-   alert('Not a number! Please enter another qualification match number.')
+    errorButton('Not a number! Please enter another qualification match number.');
  }else{
     if(isNaN(document.getElementById("RStat1").value) || isNaN(document.getElementById("RStat2").value) || isNaN(document.getElementById("RStat3").value) || isNaN(document.getElementById("BStat1").value) || isNaN(document.getElementById("BStat2").value) || isNaN(document.getElementById("BStat3").value)){
-        alert('Not a number! Please enter a team.');
+      errorButton('Not a number! Please enter a team.');
     }else{
         if(isNaN(document.getElementById("RAuto").value) || isNaN(document.getElementById("RTeleop").value) || isNaN(document.getElementById("RBFouls").value) || isNaN(document.getElementById("RRP").value) || isNaN(document.getElementById("BAuto").value) || isNaN(document.getElementById("BTeleop").value) || isNaN(document.getElementById("BRFouls").value) || isNaN(document.getElementById("BRP").value)){
-            alert('Not a number! Please enter another value.');
+          errorButton('Not a number! Please enter another value.');
         }else{
             if(document.querySelector('#ROutcome').value == 'Winner' && document.querySelector('#BOutcome').value == 'Winner'){
-                alert('Both teams cannot win! Enter another game outcome.');
+              errorButton('Both teams cannot win! Enter another game outcome.');
             }else if(document.querySelector('#ROutcome').value == 'Loser' && document.querySelector('#BOutcome').value == 'Loser'){
-                alert('Both teams cannot lose! Enter another game outcome.');
+              errorButton('Both teams cannot lose! Enter another game outcome.');
             }else if((document.querySelector('#ROutcome').value == 'Tie' && document.querySelector('#BOutcome').value != 'Tie') || (document.querySelector('#BOutcome').value == 'Tie' && document.querySelector('#ROutcome').value != 'Tie')){
-              alert('Not a possible game outcome! Enter another game outcome.');
+              errorButton('Not a possible game outcome! Enter another game outcome.');
             }else{
                 if(parseInt(document.getElementById("RStat1").value) < 0 || parseInt(document.getElementById("RStat2").value) < 0 || parseInt(document.getElementById("RStat3").value) < 0 || parseInt(document.getElementById("BStat1").value) < 0 || parseInt(document.getElementById("BStat2").value) < 0 || parseInt(document.getElementById("BStat3").value) < 0 || parseInt(document.getElementById("RAuto").value) < 0 || parseInt(document.getElementById("RTeleop").value) < 0 || parseInt(document.getElementById("RBFouls").value) < 0 || parseInt(document.getElementById("BAuto").value) < 0 || parseInt(document.getElementById("BTeleop").value) < 0 || parseInt(document.getElementById("BRFouls").value) < 0 || parseInt(document.getElementById("RRP").value) < 0 || parseInt(document.getElementById("BRP").value) < 0 || parseInt(document.getElementById("Qual").value) < 0){
-                    alert('No values can be negative! Please enter another value.');
+                  errorButton('No values can be negative! Please enter another value.');
                 }else{
                   let erroray = createCheckErroray();
                   let counter = 0;
@@ -326,11 +362,11 @@ function checkErrors(){
                     });
                   });
                   if(counter > 6){
-                    alert('A team cannot be entered multiple times! Please enter a different team');
+                    errorButton('A team cannot be entered multiple times! Please enter a different team');
                   }else{
                     games.forEach((game) => {
                       if(document.getElementById("Qual").value == game.Qual){
-                        alert("This qualification match has already been entered in the system. Please enter another match number.");
+                        errorButton("This qualification match has already been entered in the system. Please enter another match number.");
                       }else{
                         cleared++;
                       }
@@ -402,8 +438,6 @@ function addData(){
         el.classList.toggle('is-active');
         $target.classList.toggle('is-active');
         adminButton();
-        let adminbtnoo = document.getElementById("adminbtnouterouter");
-        adminbtnoo.classList.toggle('adminbutton');
   
       });
     });

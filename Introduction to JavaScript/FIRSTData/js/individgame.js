@@ -148,7 +148,7 @@ function start(){
     }
   }
 
-  //Creates a table of a summary of the game data like Auto points, teleop points, ...etc.
+  //Creates a table of a summary of the game statistics data like Auto points, teleop points, ...etc.
   function createGameDetails(game){
       let tableBody = document.querySelector('#details tbody');
 
@@ -235,8 +235,6 @@ function start(){
         el.classList.toggle('is-active');
         $target.classList.toggle('is-active');
         adminButton();
-        let adminbtnoo = document.getElementById("adminbtnouterouter");
-        adminbtnoo.classList.toggle('adminbutton');
   
       });
     });

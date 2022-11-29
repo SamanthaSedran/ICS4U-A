@@ -26,7 +26,7 @@ function start(){
 
   }
 
-  //creates a table out of the games from games array
+  //creates a table out of the games array
   function createGames(games){
       let tableBody = document.querySelector('#standings tbody');
 
@@ -276,8 +276,6 @@ function start(){
         el.classList.toggle('is-active');
         $target.classList.toggle('is-active');
         adminButton();
-        let adminbtnoo = document.getElementById("adminbtnouterouter");
-        adminbtnoo.classList.toggle('adminbutton');
   
       });
     });

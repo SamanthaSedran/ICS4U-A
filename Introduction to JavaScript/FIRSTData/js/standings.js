@@ -160,7 +160,7 @@ function btnNext(){
       detailteam['TeleopAvg'] = teleopavg.toFixed(2);
       detailteam['FoulAvg'] = foulavg.toFixed(2);
       detailteam['TotscoreAvg'] = totscoreavg.toFixed(2);
-      detailteam['TotRP'] = rankingtot.toFixed(2);
+      detailteam['TotRP'] = rankingtot;
       detailteam['RPAvg'] = rankingavg.toFixed(2);
       detailteam['Wins'] = wins;
       detailteam['Ties'] = ties;
@@ -174,7 +174,7 @@ function btnNext(){
 
   }
 
-  //Creates a new array of games of only games that team number is in
+  /*//Creates a new array of games of only games that team number is in
   function newTeamArray(num, games){
     let newGames = [];
     games.forEach((game) => {
@@ -187,7 +187,7 @@ function btnNext(){
       });
       return newGames;
 
-  }
+  }*/
 
   //Creates an array of all team numbers in no particular order
   function createTeamsList(games){
@@ -339,8 +339,6 @@ function btnNext(){
         el.classList.toggle('is-active');
         $target.classList.toggle('is-active');
         adminButton();
-        let adminbtnoo = document.getElementById("adminbtnouterouter");
-        adminbtnoo.classList.toggle('adminbutton');
   
       });
     });
