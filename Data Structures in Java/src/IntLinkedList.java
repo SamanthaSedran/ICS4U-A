@@ -31,7 +31,14 @@ public class IntLinkedList {
             return null;
         }else{
             removenum = head.getData();
-            head = head.getLink();
+            if(head.getLink() != null){
+                head = head.getLink();
+            }
+            if(manyItems == 1){
+                head.setLink(null);
+                head.setData(null);
+            }
+            manyItems--;
             return removenum;
         }
 
@@ -47,11 +54,9 @@ public class IntLinkedList {
     public String add(int index, Integer data){
         String message = "";
         if (index > manyItems){
-            message = "bad";
             throw new IndexOutOfBoundsException("Index "+ index + "is not allowed. Max index is "+manyItems);
         }else if(index == 0){
             addFront(data);
-            message = "front bad";
         }else{
             IntNode curr = head;
             for(int i=0; i<index-1; i++){
@@ -59,15 +64,42 @@ public class IntLinkedList {
             }
 
             curr.setLink(new IntNode(data, curr.getLink()));
-            message = "worked";
             manyItems++;
             
         }
         return message;
     }
 
+    public Integer showFront(){
+        return head.getData();
+    }
+
+
+    public Integer searchNum(int data){
+        if(head == null){
+            return null;
+        }
+        if(head != null && head.getData() == data){
+            head = head.getLink();
+            manyItems--;
+            return 0;
+        }else{
+            IntNode curr = head;
+            while(curr.getLink() != null && curr.getLink().getData() != data){
+                curr = curr.getLink();
+            }
+
+            if(curr.getLink() != null){
+            curr.setLink(curr.getLink().getLink());
+            manyItems--;
+            return data;
+            }
+            return null;
+        }
+    }
+
     public boolean isEmpty(){
-        return head == null;
+        return manyItems == 0;
     }
     
 
@@ -129,12 +161,35 @@ public class IntLinkedList {
         }
 
         while(curr != null){
-            result += curr.getData() + ", ";
+            if(curr == head){
+                result += curr.getData();
+            }else{
+                result +=  ", " + curr.getData();
+            }
+            
             curr = curr.getLink();
         }
 
         return result;
 
+    }
+
+    public Integer get(int index){
+        if(index < 0){
+            throw new IndexOutOfBoundsException("Invalid index" + index + " must be greater than zero."); 
+        }
+        if(head == null){
+            throw new IllegalStateException("Can't get an element from an empty list");
+        }else if (index > size()){
+            throw new IndexOutOfBoundsException("Invalid index" + index + " max index is " + (size()-1));            
+        }else{
+            IntNode curr = head;
+            for(int i=0; i<index; i++){
+                curr = curr.getLink();
+            }
+
+            return curr.getData();
+        }
     }
 }
 
