@@ -13,26 +13,26 @@ public class IntBSTNode {
         this.value = value;
     }
 
-    public boolean hasLeftchild(){
+    public boolean hasLeftChild(){
         return leftchild != null;
     }
-    public boolean hasRightchild(){
+    public boolean hasRightChild(){
         return rightchild != null;
     }
 
-    public IntBSTNode getLeftchild() {
+    public IntBSTNode getLeftChild() {
         return leftchild;
     }
 
-    public void setLeftchild(IntBSTNode leftchild) {
+    public void setLeftChild(IntBSTNode leftchild) {
         this.leftchild = leftchild;
     }
 
-    public IntBSTNode getRightchild() {
+    public IntBSTNode getRightChild() {
         return rightchild;
     }
 
-    public void setRightchild(IntBSTNode rightchild) {
+    public void setRightChild(IntBSTNode rightchild) {
         this.rightchild = rightchild;
     }
 

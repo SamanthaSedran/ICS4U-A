@@ -1,4 +1,4 @@
-public class TestIntLLQueue {
+public class ArrayQueueTest {
     public static void main(String[] args) {
         if(!testQueue()){
             System.out.println("Test Failed! :(");
@@ -7,22 +7,23 @@ public class TestIntLLQueue {
         }
     }
 
-    private static IntLLQueue prepareLLQueue(){
-        IntLLQueue list = new IntLLQueue();
-        list.endQueue(1);
-        list.endQueue(2);
-        list.endQueue(3);
-        list.endQueue(4);
-        list.endQueue(5);
+    private static IntArrayQueue prepareArrayQueue(){
+        IntArrayQueue list = new IntArrayQueue();
+        list.enqueue(1);
+        list.enqueue(2);
+        list.enqueue(3);
+        list.enqueue(4);
+        list.enqueue(5);
 
         return list;
 
     }
 
     public static boolean testQueue(){
-        IntLLQueue list = prepareLLQueue();
+        IntArrayQueue list = prepareArrayQueue();
 
-        if(!list.endQueue(6)){
+        list.enqueue(6);
+        if(list.showlast() != 6){
             return false;
         }
 
