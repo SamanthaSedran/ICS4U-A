@@ -1,12 +1,13 @@
 public class TestIntBST {
     public static void main(String[] args) {
-        if(!testBST()){
+        if(!testBST() || !sortOrderTraversal()){
             System.out.println("Test Failed! :(");
         }else{
             System.out.println("Test Passed! :)");
         }
 
-        sortOrderTraversal();
+
+        
 
 
     }
@@ -45,14 +46,24 @@ public class TestIntBST {
         return true;
     }
 
-    public static void sortOrderTraversal(){
+    public static boolean sortOrderTraversal(){
         IntBST bst = prepareBST();
 
-        bst.preOrderPrintTraversal();
-        System.out.println();
-        bst.inOrderPrintTraversal();
-        System.out.println();
-        bst.postOrderPrintTraversal();
+        if(!bst.inOrderPrintTraversal().equals(" 1 3 6 7 8 9 11 13")){
+            return false;
+        }
+
+        if(!bst.preOrderPrintTraversal().equals(" 6 3 1 8 7 13 9 11")){
+            return false;
+        }
+
+        if(!bst.postOrderPrintTraversal().equals(" 1 3 7 11 9 13 8 6")){
+            return false;
+        }
+
+
+        return true;
+        
     }
 
 

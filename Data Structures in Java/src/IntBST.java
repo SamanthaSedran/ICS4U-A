@@ -16,8 +16,10 @@
            return findRecursive(root, val);
         }
      
-        public void preOrderPrintTraversal() {
-           preOrderPrintTraversal(root);
+        public String preOrderPrintTraversal() {
+         String result = "";
+         result += preOrderPrintTraversal(root, result);
+         return result;
         }
      
         private Integer findSmallest(IntBSTNode root) {
@@ -60,49 +62,59 @@
            return root;
         }
      
-        private void preOrderPrintTraversal(IntBSTNode root) {
-           System.out.println(root.getValue());
+        private String preOrderPrintTraversal(IntBSTNode root, String result) { 
+         result += " " + root.getValue();
+         
+         if (root.hasLeftChild()) {
+            result = preOrderPrintTraversal(root.getLeftChild(), result);
+        }
+  
+        if (root.hasRightChild()) {
+         result = preOrderPrintTraversal(root.getRightChild(), result);
+        }
 
+        return result;
+        }
+     
+        public String postOrderPrintTraversal() {
+         String result = "";
+         result += postOrderPrintTraversal(root, result);
+         return result;
+        }
+     
+        private String postOrderPrintTraversal(IntBSTNode root, String result) {
+         if (root.hasLeftChild()) {
+            result = postOrderPrintTraversal(root.getLeftChild(), result);
+        }
+  
+        if (root.hasRightChild()) {
+         result = postOrderPrintTraversal(root.getRightChild(), result);
+        }
+
+        result += " " + root.getValue();
+
+        return result;
+     
+        }
+     
+        public String inOrderPrintTraversal() {
+         String result = "";
+           result += inOrderPrintTraversal(root, result);
+           return result;
+        }
+     
+        private String inOrderPrintTraversal(IntBSTNode root, String result) {
            if (root.hasLeftChild()) {
-              preOrderPrintTraversal(root.getLeftChild());
+               result = inOrderPrintTraversal(root.getLeftChild(), result);
            }
+     
+           result += " " + root.getValue();
      
            if (root.hasRightChild()) {
-              preOrderPrintTraversal(root.getRightChild());
+            result =inOrderPrintTraversal(root.getRightChild(), result);
            }
-        }
-     
-        public void postOrderPrintTraversal() {
-           postOrderPrintTraversal(root);
-        }
-     
-        private void postOrderPrintTraversal(IntBSTNode root) {
-           if (root.hasLeftChild()) {
-              postOrderPrintTraversal(root.getLeftChild());
-           }
-     
-           if (root.hasRightChild()) {
-              postOrderPrintTraversal(root.getRightChild());
-           }
-     
-           System.out.println(root.getValue());
-     
-        }
-     
-        public void inOrderPrintTraversal() {
-           inOrderPrintTraversal(root);
-        }
-     
-        private void inOrderPrintTraversal(IntBSTNode root) {
-           if (root.hasLeftChild()) {
-              inOrderPrintTraversal(root.getLeftChild());
-           }
-     
-           System.out.println(root.getValue());
-     
-           if (root.hasRightChild()) {
-              inOrderPrintTraversal(root.getRightChild());
-           }
+
+           return result;
      
         }
      
