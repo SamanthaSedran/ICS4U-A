@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Vue Mastery</title>
+   <!-- Import Styles -->
+   <link rel="stylesheet" href="./assets/styles.css" />
+   <!-- Import Vue.js -->
+   <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script> <!--Imported most up to date view-->
+</head>
+
+<body>
+   <div id="app">
+      <h1>{{1==2?product:description}}</h1> <!--If it is true, it prints product, false it prints description-->
+      <h2>{{description}}</h2>
+   </div>
+
+   <!-- Import Js -->
+   <script src="./main.js"></script>
+   <script>
+      const mountedApp = app.mount('#app');
+   </script>
+</body>
+
+</html>
