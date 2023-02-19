@@ -8,15 +8,33 @@
    <link rel="stylesheet" href="./assets/styles.css" />
    <!-- Import Vue.js -->
    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+   
 </head>
 
 <body>
    <div id="app">
-      <h1>Product goes here</h1>
-   </div>
+      <div class="nav-bar"></div>
+     
+      <div class="cart">Cart({{ cart }})</div>
+      <product-display></product-display>
+      <product-display></product-display>
+      <product-display></product-display>
+    </div>
+
+    <!-- Import Components -->
+   <script src="./Components/ProductDisplay.js"></script>
 
    <!-- Import Js -->
    <script src="./main.js"></script>
+
+   <!-- Mount App -->
+   <script>
+      const mountedApp = app.mount('#app')
+   </script>
+   
 </body>
 
+
+
 </html>
+
