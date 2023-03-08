@@ -13,8 +13,8 @@ let students = [
     {id:3, name: 'Kyle', age: 14}
 ]
 
-//create endpoint routes
-app.get('/api/students',(req, res)=> res.send(students)) 
+//Routes
+app.get('/api/students', (req, res) => res.send(students));
 
 app.get('/api/students/:id', (req, res) => {
     const student = students.find(s => s.id === parseInt(req.params.id))
@@ -23,7 +23,7 @@ app.get('/api/students/:id', (req, res) => {
 })
 
 app.post('/api/students', (req,res) => {
-    if(!req.body.name) res.status(400).send('Name is required.')
+    //if(!req.body.name) res.status(400).send('Name is required.')
     const student = {
         id: students.length + 1,
         name: req.body.name,
@@ -42,6 +42,17 @@ app.put('/api/students/:id', (req, res) => {
 
     res.send(student)
 })
+
+app.delete('/api/students/:id', (req, res) => {
+    const student = students.find(s => s.id === parseInt(req.params.id))
+    if (!student) return res.status(404).send('Student not found.')
+
+    const index = students.indexOf(student);
+    students.splice(index, 1)
+
+    res.send(student)
+})
+
 
 //app.get('/',(req,res)=> res.send('Hello Fred!')) //The local host url is: http://localhost:5000/, there are no words after path, so it calls this path because it is /____
 
